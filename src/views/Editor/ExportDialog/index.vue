@@ -1,22 +1,39 @@
 <template>
-  <div class="export-dialog">
-    <Tabs 
-      :tabs="tabs" 
-      :value="dialogForExport" 
-      card
-      @update:value="key => setDialogForExport(key as DialogForExportTypes)" 
-    />
+  <div class="export-wrap">
+    <a-form :model="form" layout="vertical">
+      <a-form-item field="type" label="文件类型">
+        <a-select v-model:value="dialogForExport" placeholder="请选择文件类型">
+          <a-option v-for="item in tabs" :key="item.key" :value="item.key">{{ item.label }}</a-option>
+        </a-select>
+      </a-form-item>
+      <a-form-item field="range" label="导出范围">
+        <a-radio-group type="button" v-model="form.range"
+                       @change="setDialogForExport(key as DialogForExportTypes)">
+          <a-radio value="all">全部</a-radio>
+          <a-radio value="current">当前页</a-radio>
+          <a-radio value="custom">自定义</a-radio>
+        </a-radio-group>
+      </a-form-item>
+      <a-form-item field="customRange" label="自定义范围" v-if="form.range === 'custom'">
+        <a-slider :default-value="[1,slides.length]" :max="slides.length" :min="1" v-model:value="form.customRange"
+                  range show-input/>
+      </a-form-item>
+      <a-form-item>
+        <a-button class="export-btn" type="primary">点击导出</a-button>
+      </a-form-item>
+    </a-form>
     <div class="content">
       <component :is="currentDialogComponent" @close="setDialogForExport('')"></component>
     </div>
+
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { storeToRefs } from 'pinia'
-import { useMainStore } from '@/store'
-import type { DialogForExportTypes } from '@/types/export'
+import {computed, reactive} from 'vue'
+import {storeToRefs} from 'pinia'
+import {useMainStore, useSlidesStore} from '@/store'
+import type {DialogForExportTypes} from '@/types/export'
 
 import ExportImage from './ExportImage.vue'
 import ExportJSON from './ExportJSON.vue'
@@ -31,16 +48,16 @@ interface TabItem {
 }
 
 const mainStore = useMainStore()
-const { dialogForExport } = storeToRefs(mainStore)
+const {dialogForExport} = storeToRefs(mainStore)
 
 const setDialogForExport = mainStore.setDialogForExport
 
 const tabs: TabItem[] = [
-  { key: 'pptist', label: '导出 pptist 文件' },
-  { key: 'pptx', label: '导出 PPTX' },
-  { key: 'image', label: '导出图片' },
-  { key: 'json', label: '导出 JSON' },
-  { key: 'pdf', label: '打印 / 导出 PDF' },
+  {key: 'pptist', label: '导出 pptist 文件'},
+  {key: 'pptx', label: '导出 PPTX'},
+  {key: 'image', label: '导出图片'},
+  {key: 'json', label: '导出 JSON'},
+  {key: 'pdf', label: '打印 / 导出 PDF'},
 ]
 
 const currentDialogComponent = computed<unknown>(() => {
@@ -54,17 +71,29 @@ const currentDialogComponent = computed<unknown>(() => {
   if (dialogForExport.value) return dialogMap[dialogForExport.value] || null
   return null
 })
+
+const {slides, currentSlide} = storeToRefs(useSlidesStore())
+const form = reactive({
+  type: 'pptx',
+  range: 'all',
+  customRange: [1, slides.value.length],
+})
 </script>
 
 <style lang="scss" scoped>
-.export-dialog {
-  margin: -20px;
-}
-.content {
-  height: 460px;
-  padding: 12px;
-  font-size: 13px;
+.export-wrap {
+  padding: 16px 20px;
 
-  @include overflow-overlay();
+  .export-btn {
+    width: 100%;
+  }
 }
+
+//.content {
+//  height: 460px;
+//  padding: 12px;
+//  font-size: 13px;
+//
+//  @include overflow-overlay();
+//}
 </style>

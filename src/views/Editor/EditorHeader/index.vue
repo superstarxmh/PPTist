@@ -109,30 +109,22 @@
           </template>
         </a-dropdown>
       </a-button-group>
-      <a-dropdown trigger="click" :hide-on-select="false">
-        <a-button type="primary" style="margin-left: 8px;"><i class="iconfont v-icon-svg15"></i> 导出</a-button>
+
+      <a-dropdown trigger="click" :hide-on-select="false" :popup-max-height="false">
+        <a-button type="primary" style="margin-left: 8px;"
+
+        >
+<!--          @click="setDialogForExport('pptx')"-->
+          <i class="iconfont v-icon-svg15"></i> &nbsp;导出
+        </a-button>
         <template #content>
           <div class="save-title-warp">
             <div class="save-title">
               <span>导出文件</span>
             </div>
           </div>
-<!--          <a-form  :model="form" :style="{width:'600px'}" auto-label-width @submit="handleSubmit">
-            <a-form-item field="name" label="Username">
-              <a-input v-model="form.name" placeholder="please enter your username..." />
-            </a-form-item>
-            <a-form-item field="post" label="Post">
-              <a-input v-model="form.post" placeholder="please enter your post..." />
-            </a-form-item>
-            <a-form-item field="isRead">
-              <a-checkbox v-model="form.isRead">
-                I have read the manual
-              </a-checkbox>
-            </a-form-item>
-            <a-form-item>
-              <a-button html-type="submit">Submit</a-button>
-            </a-form-item>
-          </a-form>-->
+          <a-divider margin="0"/>
+          <ExportDialog></ExportDialog>
         </template>
       </a-dropdown>
       <!--      <a class="github-link" v-tooltip="'Copyright © 2020-PRESENT pipipi-pikachu'" href="https://github.com/pipipi-pikachu/PPTist" target="_blank">
@@ -160,7 +152,6 @@ import {useMainStore, useSlidesStore, useSnapshotStore} from '@/store'
 import useScreening from '@/hooks/useScreening'
 import useImport from '@/hooks/useImport'
 import useSlideHandler from '@/hooks/useSlideHandler'
-import type {DialogForExportTypes} from '@/types/export'
 
 import themeManager from '@/views/components/themeManager/index.vue'
 import HotkeyDoc from './HotkeyDoc.vue'
@@ -169,7 +160,8 @@ import FullscreenSpin from '@/components/FullscreenSpin.vue'
 import Drawer from '@/components/Drawer.vue'
 import Input from '@/components/Input.vue'
 import SearchPanel1 from '../SearchPanel1.vue'
-import useHistorySnapshot from "@/hooks/useHistorySnapshot";
+import ExportDialog from '../ExportDialog/index.vue'
+import useHistorySnapshot from '@/hooks/useHistorySnapshot'
 
 const mainStore = useMainStore()
 const slidesStore = useSlidesStore()
@@ -199,11 +191,6 @@ const handleUpdateTitle = () => {
   editingTitle.value = false
 }
 
-const goLink = (url: string) => {
-  window.open(url)
-  mainMenuVisible.value = false
-}
-
 const setDialogForExport = (type: DialogForExportTypes) => {
   mainStore.setDialogForExport(type)
   mainMenuVisible.value = false
@@ -211,17 +198,12 @@ const setDialogForExport = (type: DialogForExportTypes) => {
 
 const options = [
   {
-    label: '图层',
-    value: 'layer',
-    icon: 'v-icon-layer head-btn-icon',
-  },
-  {
-    label: '组件列表',
+    label: '幻灯片',
     value: 'com',
     icon: 'v-icon-svg2 com-list-icon',
   },
   {
-    label: '工具箱',
+    label: '工具栏',
     value: 'toolbox',
     icon: 'v-icon-svg1 head-btn-icon',
   },
@@ -237,20 +219,11 @@ const showViews = reactive(['layer', 'com', 'toolbox', 'config'])
 const onClick = (item: typeof options[number]) => {
   if (showViews.value.includes(item.value)) {
     showViews.value = showViews.value.filter(v => v !== item.value)
-  } else {
+  }
+  else {
     showViews.value.push(item.value)
   }
 }
-
-const handleSubmit = () => {
-
-}
-
-const form = ref({
-  name: '',
-  post: '',
-  isRead: false
-})
 
 const searchType = ref('search')
 </script>
