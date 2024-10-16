@@ -1,5 +1,5 @@
 <template>
-  <label 
+  <label
     class="checkbox"
     :class="{
       'checked': value,
@@ -42,15 +42,15 @@ const handleChange = (e: Event) => {
 
   &:not(.disabled).checked {
     .checkbox-input {
-      background-color: $themeColor;
-      border-color: $themeColor;
+      background-color: rgb(var(--primary-6));
+      border-color: rgb(var(--primary-6));
     }
     .checkbox-input::after {
       transform: rotate(45deg) scaleY(1);
     }
 
     .checkbox-label {
-      color: $themeColor;
+      color: rgb(var(--primary-6));
     }
   }
 
@@ -68,7 +68,7 @@ const handleChange = (e: Event) => {
   display: inline-block;
   position: relative;
   border: 1px solid #d9d9d9;
-  border-radius: $borderRadius;
+  border-radius: $border-radius-small;
   width: 16px;
   height: 16px;
   background-color: #fff;

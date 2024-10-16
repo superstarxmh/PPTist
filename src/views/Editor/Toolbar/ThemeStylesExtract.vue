@@ -1,10 +1,10 @@
 <template>
   <div class="theme-styles-extract">
-    <Tabs 
-      :tabs="tabs" 
-      v-model:value="activeTab" 
-      :tabsStyle="{ marginBottom: '12px' }" 
-      :tabStyle="{ padding: '8px 12px' }" 
+    <Tabs
+      :tabs="tabs"
+      v-model:value="activeTab"
+      :tabsStyle="{ marginBottom: '12px' }"
+      :tabStyle="{ padding: '8px 12px' }"
     />
     <div class="content">
       <div class="config-item">
@@ -194,7 +194,7 @@ const updateAllThemes = () => {
       cursor: pointer;
 
       &:hover {
-        color: $themeColor;
+        color: rgb(var(--primary-6));
       }
     }
   }
@@ -207,7 +207,7 @@ const updateAllThemes = () => {
     justify-content: center;
     font-size: 12px;
     padding: 5px;
-    border-radius: $borderRadius;
+    border-radius: $border-radius-small;
   }
 }
 .btns {

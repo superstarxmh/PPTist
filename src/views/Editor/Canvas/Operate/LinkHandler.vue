@@ -51,7 +51,7 @@ const turnTarget = (slideId: string) => {
   box-shadow: $boxShadow;
   display: flex;
   align-items: center;
-  color: $themeColor;
+  color: rgb(var(--primary-6));
 }
 .link {
   max-width: 300px;

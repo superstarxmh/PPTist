@@ -20,18 +20,18 @@
       :moveShapeKeypoint="moveShapeKeypoint"
     ></component>
 
-    <div 
+    <div
       class="animation-index"
       v-if="toolbarState === 'elAnimation' && elementIndexListInAnimation.length"
     >
       <div class="index-item" v-for="index in elementIndexListInAnimation" :key="index">{{index + 1}}</div>
     </div>
 
-    <LinkHandler 
-      :elementInfo="elementInfo" 
+    <LinkHandler
+      :elementInfo="elementInfo"
       :link="elementInfo.link"
-      :openLinkDialog="openLinkDialog" 
-      v-if="isActive && elementInfo.link" 
+      :openLinkDialog="openLinkDialog"
+      v-if="isActive && elementInfo.link"
       @mousedown.stop=""
     />
   </div>
@@ -124,8 +124,8 @@ const height = computed(() => 'height' in props.elementInfo ? props.elementInfo.
     width: 18px;
     height: 18px;
     background-color: #fff;
-    color: $themeColor;
-    border: 1px solid $themeColor;
+    color: rgb(var(--primary-6));
+    border: 1px solid rgb(var(--primary-6));
     display: flex;
     justify-content: center;
     align-items: center;

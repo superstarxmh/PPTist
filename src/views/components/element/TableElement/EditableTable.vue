@@ -1,18 +1,18 @@
 <template>
-  <div 
+  <div
     class="editable-table"
     :style="{ width: totalWidth + 'px' }"
   >
     <div class="handler" v-if="editable">
-      <div 
-        class="drag-line" 
-        v-for="(pos, index) in dragLinePosition" 
+      <div
+        class="drag-line"
+        v-for="(pos, index) in dragLinePosition"
         :key="index"
         :style="{ left: pos + 'px' }"
         @mousedown="$event => handleMousedownColHandler($event, index)"
       ></div>
     </div>
-    <table 
+    <table
       :class="{
         'theme': theme,
         'row-header': theme?.rowHeader,
@@ -27,7 +27,7 @@
       </colgroup>
       <tbody>
         <tr v-for="(rowCells, rowIndex) in tableCells" :key="rowIndex" :style="{ height: cellMinHeight + 'px' }">
-          <td 
+          <td
             class="cell"
             :class="{
               'selected': selectedCells.includes(`${rowIndex}_${colIndex}`) && selectedCells.length > 1,
@@ -49,9 +49,9 @@
             @mouseenter="handleCellMouseenter(rowIndex, colIndex)"
             v-contextmenu="(el: HTMLElement) => contextmenus(el)"
           >
-            <CustomTextarea 
+            <CustomTextarea
               v-if="activedCell === `${rowIndex}_${colIndex}`"
-              class="cell-text" 
+              class="cell-text"
               :class="{ 'active': activedCell === `${rowIndex}_${colIndex}` }"
               :style="{ minHeight: (cellMinHeight - 4) + 'px' }"
               :value="cell.text"
@@ -100,7 +100,7 @@ const emit = defineEmits<{
 }>()
 
 const { canvasScale } = storeToRefs(useMainStore())
-    
+
 const isStartSelect = ref(false)
 const startCell = ref<number[]>([])
 const endCell = ref<number[]>([])
@@ -247,7 +247,7 @@ const deleteRow = (rowIndex: number) => {
   for (let i = 0; i < targetCells.length; i++) {
     if (isHideCell(rowIndex, i)) hideCellsPos.push(i)
   }
-  
+
   for (const pos of hideCellsPos) {
     for (let i = rowIndex; i >= 0; i--) {
       if (!isHideCell(i, pos)) {
@@ -325,7 +325,7 @@ const insertCol = (colIndex: number) => {
 const fillTable = (rowCount: number, colCount: number) => {
   let _tableCells: TableCell[][] = JSON.parse(JSON.stringify(tableCells.value))
   const defaultCell = { colspan: 1, rowspan: 1, text: '' }
-  
+
   if (rowCount) {
     const newRows = []
     for (let i = 0; i < rowCount; i++) {
@@ -370,7 +370,7 @@ const mergeCells = () => {
   const maxY = Math.max(startY, endY)
 
   const _tableCells: TableCell[][] = JSON.parse(JSON.stringify(tableCells.value))
-  
+
   _tableCells[minX][minY].rowspan = maxX - minX + 1
   _tableCells[minX][minY].colspan = maxY - minY + 1
 
@@ -400,7 +400,7 @@ const handleMousedownColHandler = (e: MouseEvent, colIndex: number) => {
 
   document.onmousemove = e => {
     if (!isMouseDown) return
-    
+
     const moveX = (e.pageX - startPageX) / canvasScale.value
     const width = originWidth + moveX < minWidth ? minWidth : Math.round(originWidth + moveX)
 
@@ -758,9 +758,9 @@ table {
   word-wrap: break-word;
   user-select: none;
 
-  --themeColor: $themeColor;
-  --subThemeColor1: $themeColor;
-  --subThemeColor2: $themeColor;
+  --themeColor: rgb(var(--primary-6));
+  --subThemeColor1: rgb(var(--primary-6));
+  --subThemeColor2: rgb(var(--primary-6));
 
   &.theme {
     background-color: #fff;
@@ -831,7 +831,7 @@ table {
   top: 0;
   bottom: 0;
   width: 3px;
-  background-color: $themeColor;
+  background-color: rgb(var(--primary-6));
   margin-left: -1px;
   opacity: 0;
   z-index: 2;

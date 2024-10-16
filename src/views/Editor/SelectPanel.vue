@@ -1,10 +1,10 @@
 <template>
-  <MoveablePanel 
-    class="select-panel" 
-    :width="200" 
-    :height="360" 
-    :title="`选择（${activeElementIdList.length}/${currentSlide.elements.length}）`" 
-    :left="-270" 
+  <MoveablePanel
+    class="select-panel"
+    :width="200"
+    :height="360"
+    :title="`选择（${activeElementIdList.length}/${currentSlide.elements.length}）`"
+    :left="-270"
     :top="90"
     @close="close()"
   >
@@ -22,23 +22,23 @@
       <template v-for="item in elements" :key="item.id">
         <div class="group-els" v-if="item.type === 'group'">
           <div class="group-title">组合</div>
-          <div 
-            class="item" 
+          <div
+            class="item"
             :class="{
               'active': activeElementIdList.includes(groupItem.id),
               'group-active': activeGroupElementId.includes(groupItem.id),
             }"
-            v-for="groupItem in item.elements" 
-            :key="groupItem.id" 
+            v-for="groupItem in item.elements"
+            :key="groupItem.id"
             @click="selectGroupEl(item, groupItem.id)"
             @dblclick="enterEdit(groupItem.id)"
           >
-            <input 
-              :id="`select-panel-input-${groupItem.id}`" 
-              :value="groupItem.name || ELEMENT_TYPE_ZH[groupItem.type]" 
-              class="input" 
-              type="text" 
-              v-if="editingElId === groupItem.id" 
+            <input
+              :id="`select-panel-input-${groupItem.id}`"
+              :value="groupItem.name || ELEMENT_TYPE_ZH[groupItem.type]"
+              class="input"
+              type="text"
+              v-if="editingElId === groupItem.id"
               @blur="$event => saveElementName($event, groupItem.id)"
               @keydown.enter="$event => saveElementName($event, groupItem.id)"
             >
@@ -49,19 +49,19 @@
             </div>
           </div>
         </div>
-        <div 
-          class="item" 
+        <div
+          class="item"
           :class="{ 'active': activeElementIdList.includes(item.id) }"
-          v-else 
+          v-else
           @click="selectElement(item.id)"
           @dblclick="enterEdit(item.id)"
         >
-          <input 
-            :id="`select-panel-input-${item.id}`" 
-            :value="item.name || ELEMENT_TYPE_ZH[item.type]" 
-            class="input" 
-            type="text" 
-            v-if="editingElId === item.id" 
+          <input
+            :id="`select-panel-input-${item.id}`"
+            :value="item.name || ELEMENT_TYPE_ZH[item.type]"
+            class="input"
+            type="text"
+            v-if="editingElId === item.id"
             @blur="$event => saveElementName($event, item.id)"
             @keydown.enter="$event => saveElementName($event, item.id)"
           >
@@ -184,7 +184,7 @@ const close = () => {
     cursor: pointer;
 
     &:hover {
-      color: $themeColor;
+      color: rgb(var(--primary-6));
     }
   }
 }
@@ -197,19 +197,19 @@ const close = () => {
 .item {
   padding: 5px;
   font-size: 12px;
-  border-radius: $borderRadius;
+  border-radius: $border-radius-small;
   display: flex;
   align-items: center;
   cursor: pointer;
 
   &.active {
-    background-color: rgba($color: $themeColor, $alpha: .1);
+    background-color: rgb(var(--primary-1));
   }
   &.group-active {
-    background-color: rgba($color: $themeColor, $alpha: .2);
+    background-color: rgb(var(--primary-2));
   }
   &:hover {
-    background-color: rgba($color: $themeColor, $alpha: .25);
+    background-color: rgb(var(--primary-5));
   }
 
   .name {

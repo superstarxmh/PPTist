@@ -4,7 +4,7 @@
     :class="{
       'active': value,
       'disabled': disabled,
-    }" 
+    }"
     @click="handleChange()"
   >
     <span class="switch-core"></span>
@@ -37,8 +37,8 @@ const handleChange = () => {
 
   &:not(.disabled).active {
     .switch-core {
-      border-color: $themeColor;
-      background-color: $themeColor;
+      border-color: rgb(var(--primary-6));
+      background-color: rgb(var(--primary-6));
 
       &::after {
         left: 100%;

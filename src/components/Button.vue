@@ -1,5 +1,5 @@
 <template>
-  <button 
+  <button
     class="button"
     :class="{
       'disabled': disabled,
@@ -54,7 +54,7 @@ const handleClick = () => {
   padding: 0 15px;
   text-align: center;
   color: $textColor;
-  border-radius: $borderRadius;
+  border-radius: $border-radius-small;
   user-select: none;
   letter-spacing: 1px;
   cursor: pointer;
@@ -73,18 +73,18 @@ const handleClick = () => {
     color: $textColor;
 
     &:hover {
-      color: $themeColor;
-      border-color: $themeColor;
+      color: rgb(var(--primary-6));
+      border-color: rgb(var(--primary-6));
     }
   }
   &.primary {
-    background-color: $themeColor;
-    border: 1px solid $themeColor;
+    background-color: rgb(var(--primary-6));
+    border: 1px solid rgb(var(--primary-6));
     color: #fff;
 
     &:hover {
-      background-color: $themeHoverColor;
-      border-color: $themeHoverColor;
+      background-color: rgb(var(--primary-6));
+      border-color: rgb(var(--primary-6));
     }
   }
   &.checkbox, &.radio {
@@ -93,17 +93,17 @@ const handleClick = () => {
     color: $textColor;
 
     &:not(.checked):hover {
-      color: $themeColor;
+      color: rgb(var(--primary-6));
     }
   }
   &.checked {
     color: #fff;
-    background-color: $themeColor;
-    border-color: $themeColor;
+    background-color: rgb(var(--primary-6));
+    border-color: rgb(var(--primary-6));
 
     &:hover {
-      background-color: $themeHoverColor;
-      border-color: $themeHoverColor;
+      background-color: rgb(var(--primary-6));
+      border-color: rgb(var(--primary-6));
     }
   }
   &.disabled {

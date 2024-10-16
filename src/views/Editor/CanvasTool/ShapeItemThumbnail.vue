@@ -1,23 +1,23 @@
 <template>
   <div class="shape-item-thumbnail">
     <div class="shape-content">
-      <svg 
-        overflow="visible" 
+      <svg
+        overflow="visible"
         width="18"
         height="18"
       >
-        <g 
+        <g
           :transform="`scale(${18 / shape.viewBox[0]}, ${18 / shape.viewBox[1]}) translate(0,0) matrix(1,0,0,1,0,0)`"
         >
-          <path 
+          <path
             class="shape-path"
             :class="{ 'outlined': shape.outlined }"
-            vector-effect="non-scaling-stroke" 
-            stroke-linecap="butt" 
+            vector-effect="non-scaling-stroke"
+            stroke-linecap="butt"
             stroke-miterlimit="8"
             :fill="shape.outlined ? '#999' : 'transparent'"
             :stroke="shape.outlined ? 'transparent' : '#999'"
-            stroke-width="2" 
+            stroke-width="2"
             :d="shape.path"
           ></path>
         </g>
@@ -48,10 +48,10 @@ defineProps<{
 
   &:hover .shape-path {
     &:not(.outlined) {
-      stroke: $themeColor;
+      stroke: rgb(var(--primary-6));
     }
     &.outlined {
-      fill: $themeColor;
+      fill: rgb(var(--primary-6));
     }
   }
 

@@ -2,9 +2,9 @@
   <div class="layout-pool">
     <div class="header">页面模板</div>
     <div class="list">
-      <div 
+      <div
         class="layout-item"
-        v-for="slide in layouts" 
+        v-for="slide in layouts"
         :key="slide.id"
       >
         <ThumbnailSlide class="thumbnail" :slide="slide" :size="180" />
@@ -70,7 +70,7 @@ const insertTemplate = (slide: Slide) => {
   }
 
   &:hover .thumbnail {
-    outline-color: $themeColor;
+    outline-color: rgb(var(--primary-6));
   }
 
   .btns {
@@ -88,7 +88,7 @@ const insertTemplate = (slide: Slide) => {
   .thumbnail {
     outline: 2px solid $borderColor;
     transition: outline $transitionDelay;
-    border-radius: $borderRadius;
+    border-radius: $border-radius-small;
     cursor: pointer;
   }
 }

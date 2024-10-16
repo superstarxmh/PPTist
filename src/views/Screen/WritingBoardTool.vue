@@ -6,10 +6,10 @@
         height: slideHeight + 'px',
       }"
     >
-      <WritingBoard 
-        ref="writingBoardRef" 
-        :color="writingBoardColor" 
-        :blackboard="blackboard" 
+      <WritingBoard
+        ref="writingBoardRef"
+        :color="writingBoardColor"
+        :blackboard="blackboard"
         :model="writingBoardModel"
         :penSize="penSize"
         :markSize="markSize"
@@ -18,11 +18,11 @@
       />
     </div>
 
-    <MoveablePanel 
-      class="tools-panel" 
-      :width="520" 
+    <MoveablePanel
+      class="tools-panel"
+      :width="520"
       :height="50"
-      :left="left" 
+      :left="left"
       :top="top"
       :moveable="sizePopoverType === ''"
     >
@@ -68,8 +68,8 @@
             <IconFill class="icon" />
           </div>
           <div class="colors">
-            <div 
-              class="color" 
+            <div
+              class="color"
               :class="{ 'active': color === writingBoardColor }"
               v-for="color in writingBoardColors"
               :key="color"
@@ -203,10 +203,10 @@ const hanldeWritingEnd = () => {
     cursor: pointer;
 
     &:hover {
-      color: $themeColor;
+      color: rgb(var(--primary-6));
     }
     &.active {
-      background-color: rgba($color: $themeColor, $alpha: .5);
+      background-color: rgb(var(--primary-7));
       color: #fff;
     }
   }
@@ -220,7 +220,7 @@ const hanldeWritingEnd = () => {
   .color {
     width: 16px;
     height: 16px;
-    border-radius: $borderRadius;
+    border-radius: $border-radius-small;
     cursor: pointer;
 
     &:hover {

@@ -1,18 +1,18 @@
 <template>
   <div class="element-animation-panel">
     <div class="element-animation" v-if="handleElement">
-      <Popover 
-        trigger="click" 
-        v-model:value="animationPoolVisible" 
+      <Popover
+        trigger="click"
+        v-model:value="animationPoolVisible"
         @update:value="visible => handlePopoverVisibleChange(visible)"
         style="width: 100%;"
       >
         <template #content>
-          <Tabs 
-            :tabs="tabs" 
-            v-model:value="activeTab" 
-            :tabsStyle="{ marginBottom: '20px' }" 
-            :tabStyle="{ width: '33.333%' }" 
+          <Tabs
+            :tabs="tabs"
+            v-model:value="activeTab"
+            :tabsStyle="{ marginBottom: '20px' }"
+            :tabStyle="{ width: '33.333%' }"
             spaceAround
           />
           <template v-for="key in animationTypes">
@@ -20,14 +20,14 @@
               <div class="pool-type" :key="effect.name" v-for="effect in animations[key]">
                 <div class="type-title">{{effect.name}}：</div>
                 <div class="pool-item-wrapper">
-                  <div 
-                    class="pool-item" 
+                  <div
+                    class="pool-item"
                     v-for="item in effect.children" :key="item.name"
                     @mouseenter="hoverPreviewAnimation = item.value"
                     @mouseleave="hoverPreviewAnimation = ''"
                     @click="addAnimation(key, item.value)"
                   >
-                    <div 
+                    <div
                       class="animation-box"
                       :class="[
                         `${ANIMATION_CLASS_PREFIX}animated`,
@@ -49,10 +49,10 @@
     </div>
 
     <div class="tip" v-else><IconClick style="margin-right: 5px;" /> 选中画布中的元素添加动画</div>
-    
+
     <Divider />
 
-    <Draggable 
+    <Draggable
       class="animation-sequence"
       :modelValue="animationSequence"
       :animation="200"
@@ -78,13 +78,13 @@
 
             <div class="config-item">
               <div style="width: 35%;">持续时长：</div>
-              <NumberInput 
+              <NumberInput
                 :min="500"
                 :max="3000"
                 :step="500"
-                :value="element.duration" 
-                @update:value="value => updateElementAnimationDuration(element.id, value)" 
-                style="width: 65%;" 
+                :value="element.duration"
+                @update:value="value => updateElementAnimationDuration(element.id, value)"
+                style="width: 65%;"
               />
             </div>
             <div class="config-item">
@@ -123,7 +123,7 @@ import { nanoid } from 'nanoid'
 import { storeToRefs } from 'pinia'
 import { useMainStore, useSlidesStore } from '@/store'
 import type { AnimationTrigger, AnimationType, PPTAnimation } from '@/types/slides'
-import { 
+import {
   ENTER_ANIMATIONS,
   EXIT_ANIMATIONS,
   ATTENTION_ANIMATIONS,
@@ -233,7 +233,7 @@ const handleDragEnd = (eventData: { newIndex: number; oldIndex: number }) => {
   const animation = animations[oldIndex]
   animations.splice(oldIndex, 1)
   animations.splice(newIndex, 0, animation)
-  
+
   slidesStore.updateSlide({ animations })
   addHistorySnapshot()
 }
@@ -260,7 +260,7 @@ const runAllAnimation = async () => {
   for (let i = 0; i < animationSequence.value.length; i++) {
     if (!animateIn.value) break
     const item = animationSequence.value[i]
-    if (item.index !== 1 && item.trigger !== 'meantime') await new Promise(resolve => setTimeout(resolve, item.duration + 100)) 
+    if (item.index !== 1 && item.trigger !== 'meantime') await new Promise(resolve => setTimeout(resolve, item.duration + 100))
     runAnimation(item.elId, item.effect, item.duration)
     if (i >= animationSequence.value.length - 1) animateIn.value = false
   }
@@ -439,7 +439,7 @@ $attentionColor: #e8b76a;
 }
 .animation-box {
   background-color: $lightGray;
-  border-radius: $borderRadius;
+  border-radius: $border-radius-small;
 }
 
 .animation-sequence {
@@ -452,7 +452,7 @@ $attentionColor: #e8b76a;
 .sequence-item {
   border: 1px solid $borderColor;
   padding: 8px;
-  border-radius: $borderRadius;
+  border-radius: $border-radius-small;
   margin-bottom: 8px;
   transition: all .5s;
 

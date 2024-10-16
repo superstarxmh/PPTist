@@ -1,8 +1,8 @@
 <template>
   <div class="canvas-tool">
     <div class="left-handler">
-      <IconBack class="handler-item" :class="{ 'disable': !canUndo }" v-tooltip="'撤销（Ctrl + Z）'" @click="undo()" />
-      <IconNext class="handler-item" :class="{ 'disable': !canRedo }" v-tooltip="'重做（Ctrl + Y）'" @click="redo()" />
+<!--      <IconBack class="handler-item" :class="{ 'disable': !canUndo }" v-tooltip="'撤销（Ctrl + Z）'" @click="undo()" />-->
+<!--      <IconNext class="handler-item" :class="{ 'disable': !canRedo }" v-tooltip="'重做（Ctrl + Y）'" @click="redo()" />-->
       <div class="more">
         <Divider type="vertical" style="height: 20px;" />
         <Popover class="more-icon" trigger="click" v-model:value="moreVisible" :offset="10">
@@ -22,7 +22,7 @@
     <div class="add-element-handler">
       <div class="handler-item group-btn" v-tooltip="'插入文字'">
         <IconFontSize class="icon" :class="{ 'active': creatingElement?.type === 'text' }" @click="drawText()" />
-        
+
         <Popover trigger="click" v-model:value="textTypeSelectVisible" style="height: 100%;" :offset="10">
           <template #content>
             <PopoverMenuItem center @click="() => { drawText(); textTypeSelectVisible = false }"><IconTextRotationNone /> 横向文本框</PopoverMenuItem>
@@ -38,7 +38,7 @@
           </template>
           <IconGraphicDesign class="icon" :class="{ 'active': creatingCustomShape || creatingElement?.type === 'shape' }" />
         </Popover>
-        
+
         <Popover trigger="click" v-model:value="shapeMenuVisible" style="height: 100%;" :offset="10">
           <template #content>
             <PopoverMenuItem center @click="() => { drawCustomShape(); shapeMenuVisible = false }">自由绘制</PopoverMenuItem>
@@ -73,7 +73,7 @@
       <IconFormula class="handler-item" v-tooltip="'插入公式'" @click="latexEditorVisible = true" />
       <Popover trigger="click" v-model:value="mediaInputVisible" :offset="10">
         <template #content>
-          <MediaInput 
+          <MediaInput
             @close="mediaInputVisible = false"
             @insertVideo="src => { createVideoElement(src); mediaInputVisible = false }"
             @insertAudio="src => { createAudioElement(src); mediaInputVisible = false }"
@@ -89,8 +89,8 @@
         <template #content>
           <PopoverMenuItem
             center
-            v-for="item in canvasScalePresetList" 
-            :key="item" 
+            v-for="item in canvasScalePresetList"
+            :key="item"
             @click="applyCanvasPresetScale(item)"
           >{{item}}%</PopoverMenuItem>
           <PopoverMenuItem center @click="resetCanvas()">适应屏幕</PopoverMenuItem>
@@ -102,10 +102,10 @@
     </div>
 
     <Modal
-      v-model:visible="latexEditorVisible" 
+      v-model:visible="latexEditorVisible"
       :width="880"
     >
-      <LaTeXEditor 
+      <LaTeXEditor
         @close="latexEditorVisible = false"
         @update="data => { createLatexElement(data); latexEditorVisible = false }"
       />
@@ -262,7 +262,7 @@ const toggleNotesPanel = () => {
     }
 
     &.active {
-      color: $themeColor;
+      color: rgb(var(--primary-6));
     }
 
     &.group-btn {
@@ -288,7 +288,7 @@ const toggleNotesPanel = () => {
           background-color: #e9e9e9;
         }
         &.active {
-          color: $themeColor;
+          color: rgb(var(--primary-6));
         }
       }
       .arrow {
@@ -308,7 +308,7 @@ const toggleNotesPanel = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: $borderRadius;
+  border-radius: $border-radius-small;
   overflow: hidden;
   cursor: pointer;
 

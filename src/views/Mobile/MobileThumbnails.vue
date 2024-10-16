@@ -1,6 +1,6 @@
 <template>
   <div class="mobile-thumbnails">
-    <Draggable 
+    <Draggable
       class="thumbnail-list"
       :modelValue="slides"
       :animation="200"
@@ -69,10 +69,10 @@ const handleDragEnd = (eventData: { newIndex: number; oldIndex: number }) => {
   }
 
   &.active {
-    outline-color: $themeColor;
+    outline-color: rgb(var(--primary-6));
 
     .label {
-      background-color: $themeColor;
+      background-color: rgb(var(--primary-6));
     }
   }
   .label {

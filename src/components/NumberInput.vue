@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     class="number-input"
     :class="{
       'disabled': disabled,
@@ -13,7 +13,7 @@
       <input
         type="text"
         :disabled="disabled"
-        v-model="number" 
+        v-model="number"
         :placeholder="placeholder"
         @input="$event => emit('input', $event)"
         @focus="$event => handleFocus($event)"
@@ -115,7 +115,7 @@ const handleFocus = (e: Event) => {
   background-color: #fff;
   border: 1px solid #d9d9d9;
   padding: 0 0 0 5px;
-  border-radius: $borderRadius;
+  border-radius: $border-radius-small;
   transition: border-color .25s;
   font-size: 13px;
   display: inline-flex;
@@ -157,7 +157,7 @@ const handleFocus = (e: Event) => {
       }
 
       &:hover {
-        color: $themeColor;
+        color: rgb(var(--primary-6));
       }
     }
   }
@@ -177,7 +177,7 @@ const handleFocus = (e: Event) => {
   }
 
   &:not(.disabled):hover, &.focused {
-    border-color: $themeColor;
+    border-color: rgb(var(--primary-6));
   }
 
   &.disabled {

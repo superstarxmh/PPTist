@@ -9,10 +9,10 @@
       </div>
     </div>
   </div>
-  <Popover 
+  <Popover
     class="select-wrap"
-    trigger="click" 
-    v-model:value="popoverVisible" 
+    trigger="click"
+    v-model:value="popoverVisible"
     placement="bottom"
     :contentStyle="{
       padding: 0,
@@ -26,12 +26,12 @@
         <Divider :margin="0" />
       </template>
       <div class="options" :style="{ width: width + 2 + 'px' }">
-        <div class="option" 
+        <div class="option"
           :class="{
             'disabled': option.disabled,
             'selected': option.value === value,
           }"
-          v-for="option in showOptions" 
+          v-for="option in showOptions"
           :key="option.value"
           @click="handleSelect(option)"
         >{{ option.label }}</div>
@@ -134,7 +134,7 @@ const handleSelect = (option: SelectOption) => {
   width: 100%;
   height: 32px;
   padding-right: 32px;
-  border-radius: $borderRadius;
+  border-radius: $border-radius-small;
   transition: border-color .25s;
   font-size: 13px;
   user-select: none;
@@ -144,7 +144,7 @@ const handleSelect = (option: SelectOption) => {
   cursor: pointer;
 
   &:not(.disabled):hover {
-    border-color: $themeColor;
+    border-color: rgb(var(--primary-6));
   }
 
   &.disabled {
@@ -174,19 +174,19 @@ const handleSelect = (option: SelectOption) => {
   height: 32px;
   line-height: 32px;
   padding: 0 5px;
-  border-radius: $borderRadius;
+  border-radius: $border-radius-small;
   @include ellipsis-oneline();
 
   &.disabled {
     color: #b7b7b7;
   }
   &:not(.disabled, .selected):hover {
-    background-color: rgba($color: $themeColor, $alpha: .05);
+    background-color: rgb(var(--primary-1));
     cursor: pointer;
   }
 
   &.selected {
-    color: $themeColor;
+    color: rgb(var(--primary-6));
     font-weight: 700;
   }
 }

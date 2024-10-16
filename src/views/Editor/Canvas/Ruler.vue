@@ -1,23 +1,23 @@
 <template>
   <div class="ruler">
-    <div 
+    <div
       class="h"
       :style="{
         width: viewportStyles.width * canvasScale + 'px',
         left: viewportStyles.left + 'px',
       }"
     >
-      <div 
-        class="ruler-marker-100" 
+      <div
+        class="ruler-marker-100"
         :class="{ 'hide': markerSize < 36, 'omit': markerSize < 72 }"
-        v-for="marker in 20" 
+        v-for="marker in 20"
         :key="`h-marker-100-${marker}`"
         :style="{ width: markerSize + 'px' }"
       >
         <span v-if="marker * 100 <= viewportSize">{{ marker * 100 }}</span>
       </div>
 
-      <div class="range" 
+      <div class="range"
         v-if="elementListRange"
         :style="{
           left: elementListRange.minX * canvasScale + 'px',
@@ -25,24 +25,24 @@
         }"
       ></div>
     </div>
-    <div 
+    <div
       class="v"
       :style="{
         height: viewportStyles.height * canvasScale + 'px',
         top: viewportStyles.top + 'px',
       }"
     >
-      <div 
-        class="ruler-marker-100" 
+      <div
+        class="ruler-marker-100"
         :class="{ 'hide': markerSize < 36, 'omit': markerSize < 72 }"
-        v-for="marker in 20" 
+        v-for="marker in 20"
         :key="`v-marker-100-${marker}`"
         :style="{ height: markerSize + 'px' }"
       >
         <span v-if="marker * 100 <= viewportSize * viewportRatio">{{ marker * 100 }}</span>
       </div>
 
-      <div class="range" 
+      <div class="range"
         v-if="elementListRange"
         :style="{
           top: elementListRange.minY * canvasScale + 'px',
@@ -108,7 +108,7 @@ const markerSize = computed(() => {
     position: absolute;
     top: 0;
     bottom: 0;
-    background-color: rgba($color: $themeColor, $alpha: .1);
+    background-color: rgb(var(--primary-1));
   }
 
   .ruler-marker-100 {
@@ -158,7 +158,7 @@ const markerSize = computed(() => {
     position: absolute;
     left: 0;
     right: 0;
-    background-color: rgba($color: $themeColor, $alpha: .1);
+    background-color: rgb(var(--primary-1));
   }
 
   .ruler-marker-100 {

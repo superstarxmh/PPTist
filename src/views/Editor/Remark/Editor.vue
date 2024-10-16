@@ -1,10 +1,10 @@
 <template>
   <div class="editor" v-click-outside="hideMenuInstance">
-    <div 
+    <div
       class="prosemirror-editor"
       ref="editorViewRef"
     ></div>
-  
+
     <div class="menu" ref="menuRef">
       <button :class="{ 'active': attr?.bold }" @click="execCommand('bold')"><IconTextBold /></button>
       <button :class="{ 'active': attr?.em }" @click="execCommand('em')"><IconTextItalic /></button>
@@ -225,7 +225,7 @@ onUnmounted(() => {
   display: flex;
   background-color: #fff;
   padding: 6px 4px;
-  border-radius: $borderRadius;
+  border-radius: $border-radius-small;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, .15);
 
   button {
@@ -233,7 +233,7 @@ onUnmounted(() => {
     border: 0;
     background-color: #fff;
     padding: 3px;
-    border-radius: $borderRadius;
+    border-radius: $border-radius-small;
     font-size: 16px;
     margin: 0 3px;
     display: flex;
@@ -242,7 +242,7 @@ onUnmounted(() => {
     cursor: pointer;
 
     &:hover, &.active {
-      background-color: $themeColor;
+      background-color: rgb(var(--primary-6));
       color: #fff;
     }
   }

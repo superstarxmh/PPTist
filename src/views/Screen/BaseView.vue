@@ -12,22 +12,22 @@
       v-contextmenu="contextmenus"
     />
 
-    <SlideThumbnails 
-      v-if="slideThumbnailModelVisible" 
-      :turnSlideToIndex="turnSlideToIndex" 
+    <SlideThumbnails
+      v-if="slideThumbnailModelVisible"
+      :turnSlideToIndex="turnSlideToIndex"
       @close="slideThumbnailModelVisible = false"
     />
 
-    <WritingBoardTool 
+    <WritingBoardTool
       :slideWidth="slideWidth"
       :slideHeight="slideHeight"
-      v-if="writingBoardToolVisible" 
-      @close="writingBoardToolVisible = false" 
+      v-if="writingBoardToolVisible"
+      @close="writingBoardToolVisible = false"
     />
 
-    <CountdownTimer 
-      v-if="timerlVisible" 
-      @close="timerlVisible = false" 
+    <CountdownTimer
+      v-if="timerlVisible"
+      @close="timerlVisible = false"
     />
 
     <div class="tools-left">
@@ -35,8 +35,8 @@
       <IconRightTwo class="tool-btn" theme="two-tone" :fill="['#111', '#fff']" @click="execNext()" />
     </div>
 
-    <div 
-      class="tools-right" :class="{ 'visible': rightToolsVisible }" 
+    <div
+      class="tools-right" :class="{ 'visible': rightToolsVisible }"
       @mouseleave="rightToolsVisible = false"
       @mouseenter="rightToolsVisible = true"
     >
@@ -246,7 +246,7 @@ const contextmenus = (): ContextmenuItem[] => {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: $borderRadius;
+    border-radius: $border-radius-small;
     font-size: 25px;
     background-color: #fff;
     color: $textColor;
@@ -259,7 +259,7 @@ const contextmenus = (): ContextmenuItem[] => {
     cursor: pointer;
 
     &:hover, &.active {
-      color: $themeColor;
+      color: rgb(var(--primary-6));
     }
 
     & + .tool-btn {

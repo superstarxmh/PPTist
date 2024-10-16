@@ -4,19 +4,19 @@
       <div class="lef">表格 {{endCell.length ? `${endCell[0]} x ${endCell[1]}` : ''}}</div>
       <div class="right" @click="isCustom = !isCustom">{{ isCustom ? '返回' : '自定义'}}</div>
     </div>
-    <table 
-      @mouseleave="endCell = []" 
-      @click="handleClickTable()" 
+    <table
+      @mouseleave="endCell = []"
+      @click="handleClickTable()"
       v-if="!isCustom"
     >
       <tbody>
         <tr v-for="row in 10" :key="row">
-          <td 
+          <td
             @mouseenter="endCell = [row, col]"
             v-for="col in 10" :key="col"
           >
-            <div 
-              class="cell" 
+            <div
+              class="cell"
               :class="{ 'active': endCell.length && row <= endCell[0] && col <= endCell[1] }"
             ></div>
           </td>
@@ -105,15 +105,15 @@ const close = () => {
   font-size: 12px;
   display: flex;
   justify-content: space-between;
-  border-top-left-radius: $borderRadius;
-  border-top-right-radius: $borderRadius;
+  border-top-left-radius: $border-radius-small;
+  border-top-right-radius: $border-radius-small;
   user-select: none;
 
   .right {
     cursor: pointer;
 
     &:hover {
-      color: $themeColor;
+      color: rgb(var(--primary-6));
     }
   }
 }
@@ -133,8 +133,8 @@ td {
   border: 1px solid #dcdcdc;
 
   &.active {
-    background-color: rgba($color: $themeColor, $alpha: .1);
-    border-color: $themeColor;
+    background-color: rgb(var(--primary-1));
+    border-color: rgb(var(--primary-6));
   }
 }
 

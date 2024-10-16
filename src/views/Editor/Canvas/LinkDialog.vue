@@ -1,19 +1,19 @@
 <template>
   <div class="link-dialog">
-    <Tabs 
-      :tabs="tabs" 
+    <Tabs
+      :tabs="tabs"
       v-model:value="type"
-      :tabsStyle="{ marginBottom: '20px' }" 
+      :tabsStyle="{ marginBottom: '20px' }"
     />
 
-    <Input 
+    <Input
       class="input"
-      v-if="type === 'web'" 
-      v-model:value="address" 
+      v-if="type === 'web'"
+      v-model:value="address"
       placeholder="请输入网页链接地址"
     />
 
-    <Select 
+    <Select
       class="input"
       v-if="type === 'slide'"
       v-model:value="slideId"
@@ -119,9 +119,9 @@ const save = () => {
   margin-top: 12px;
 }
 .thumbnail {
-  border: 1px solid rgba($color: $themeColor, $alpha: .15);
+  border: 1px solid rgb(var(--primary-1));
   margin-top: 5px;
-  border-radius: $borderRadius;
+  border-radius: $border-radius-small;
 }
 .btns {
   margin-top: 20px;

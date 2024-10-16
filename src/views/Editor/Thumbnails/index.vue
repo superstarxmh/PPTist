@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     class="thumbnails"
     @mousedown="() => setThumbnailsFocus(true)"
     v-click-outside="() => setThumbnailsFocus(false)"
@@ -15,7 +15,7 @@
       </Popover>
     </div>
 
-    <Draggable 
+    <Draggable
       class="thumbnail-list"
       ref="thumbnailsRef"
       :modelValue="slides"
@@ -30,11 +30,11 @@
         <div class="thumbnail-container">
           <div class="section-title"
             :data-section-id="element?.sectionTag?.id || ''"
-            v-if="element.sectionTag || (hasSection && index === 0)" 
+            v-if="element.sectionTag || (hasSection && index === 0)"
             v-contextmenu="contextmenusSection"
           >
-            <input 
-              :id="`section-title-input-${element?.sectionTag?.id || 'default'}`" 
+            <input
+              :id="`section-title-input-${element?.sectionTag?.id || 'default'}`"
               type="text"
               :value="element?.sectionTag?.title || ''"
               placeholder="输入节名称"
@@ -58,7 +58,7 @@
           >
             <div class="label" :class="{ 'offset-left': index >= 99 }">{{ fillDigit(index + 1, 2) }}</div>
             <ThumbnailSlide class="thumbnail" :slide="element" :size="120" :visible="index < slidesLoadLimit" />
-  
+
             <div class="note-flag" v-if="element.notes && element.notes.length" @click="openNotesPanel()">{{ element.notes.length }}</div>
           </div>
         </div>
@@ -406,27 +406,27 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
   position: relative;
 
   .thumbnail {
-    border-radius: $borderRadius;
-    outline: 2px solid rgba($color: $themeColor, $alpha: .15);
+    border-radius: $border-radius-small;
+    outline: 2px solid rgb(var(--primary-2));
   }
 
   &.active {
     .label {
-      color: $themeColor;
+      color: rgb(var(--primary-6));
     }
     .thumbnail {
-      outline-color: $themeColor;
+      outline-color: rgb(var(--primary-6));
     }
   }
   &.selected {
     .thumbnail {
-      outline-color: $themeColor;
+      outline-color: rgb(var(--primary-6));
     }
     .note-flag {
-      background-color: $themeColor;
+      background-color: rgb(var(--primary-6));
 
       &::after {
-        border-top-color: $themeColor;
+        border-top-color: rgb(var(--primary-6));
       }
     }
   }
@@ -439,7 +439,7 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
     left: 8px;
     top: 13px;
     font-size: 8px;
-    background-color: rgba($color: $themeColor, $alpha: .75);
+    background-color: rgb(var(--primary-4));
     color: #fff;
     text-align: center;
     line-height: 12px;
@@ -453,7 +453,7 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
       top: 10px;
       left: 4px;
       border: 4px solid transparent;
-      border-top-color: rgba($color: $themeColor, $alpha: .75);
+      border-top-color: rgb(var(--primary-4));
     }
   }
 }
@@ -487,11 +487,11 @@ const contextmenusThumbnailItem = (): ContextmenuItem[] => {
   color: #555;
 
   &.contextmenu-active {
-    color: $themeColor;
+    color: rgb(var(--primary-6));
 
     .text::before {
-      border-bottom-color: $themeColor;
-      border-right-color: $themeColor;
+      border-bottom-color: rgb(var(--primary-6));
+      border-right-color: rgb(var(--primary-6));
     }
   }
 

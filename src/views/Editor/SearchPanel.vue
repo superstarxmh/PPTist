@@ -1,15 +1,15 @@
 <template>
-  <MoveablePanel 
-    class="search-panel" 
-    :width="330" 
+  <MoveablePanel
+    class="search-panel"
+    :width="330"
     :height="0"
-    :left="-270" 
+    :left="-270"
     :top="90"
   >
     <div class="close-btn" @click="close()" @mousedown.stop><IconClose /></div>
-    <Tabs 
-      :tabs="tabs" 
-      v-model:value="type" 
+    <Tabs
+      :tabs="tabs"
+      v-model:value="type"
     />
 
     <div class="content" :class="type" @mousedown.stop>
@@ -112,7 +112,7 @@ watch(type, () => {
   cursor: pointer;
 
   &.active {
-    color: $themeColor;
+    color: rgb(var(--primary-6));
   }
 }
 .next-btn {
@@ -126,7 +126,7 @@ watch(type, () => {
   cursor: pointer;
 
   &:hover {
-    color: $themeColor;
+    color: rgb(var(--primary-6));
   }
 }
 .footer {

@@ -4,7 +4,7 @@
       <div class="handler">
         <div class="col-header">
           <div class="col-header-item"
-            v-for="colIndex in 7" 
+            v-for="colIndex in 7"
             :key="colIndex"
           >
             <div class="col-key">{{ alphabet[colIndex - 1] }}</div>
@@ -12,7 +12,7 @@
         </div>
         <div class="row-header">
           <div class="row-header-item"
-            v-for="rowIndex in 31" 
+            v-for="rowIndex in 31"
             :key="rowIndex"
           >
             <div class="row-key">{{ rowIndex }}</div>
@@ -25,21 +25,21 @@
         </div>
       </div>
       <div class="range-box">
-        <div 
-          class="temp-range" 
+        <div
+          class="temp-range"
           :style="{
             width: tempRangeSize.width + 'px',
             height: tempRangeSize.height + 'px',
           }"
         ></div>
-        <div 
-          :class="['range-line', line.type]" 
-          v-for="line in rangeLines" 
-          :key="line.type" 
+        <div
+          :class="['range-line', line.type]"
+          v-for="line in rangeLines"
+          :key="line.type"
           :style="line.style"
         ></div>
-        <div 
-          class="resizable" 
+        <div
+          class="resizable"
           :style="resizablePointStyle"
           @mousedown.stop="changeSelectRange($event)"
         ></div>
@@ -47,12 +47,12 @@
       <table>
         <tbody>
           <tr v-for="rowIndex in 31" :key="rowIndex">
-            <td 
-              v-for="colIndex in 7" 
-              :key="colIndex" 
+            <td
+              v-for="colIndex in 7"
+              :key="colIndex"
               :class="{ 'head': (colIndex === 1 && rowIndex <= selectedRange[1]) || (rowIndex === 1 && colIndex <= selectedRange[0]) }"
             >
-              <input 
+              <input
                 :class="['item', { 'selected': rowIndex <= selectedRange[1] && colIndex <= selectedRange[0] }]"
                 :id="`cell-${rowIndex - 1}-${colIndex - 1}`"
                 v-if="!(rowIndex === 1 && colIndex === 1)"
@@ -73,8 +73,8 @@
           <template #content>
             <PopoverMenuItem
               center
-              v-for="item in chartList" 
-              :key="item" 
+              v-for="item in chartList"
+              :key="item"
               @click="chartType = item; chartTypeSelectVisible = false"
             >{{CHART_TYPE_MAP[item]}}</PopoverMenuItem>
           </template>
@@ -277,7 +277,7 @@ const handlePaste = (e: ClipboardEvent, rowIndex: number, colIndex: number) => {
     clipboardDataFirstItem.getAsString(text => {
       const clipboardData = pasteCustomClipboardString(text)
       if (typeof clipboardData === 'object') return
- 
+
       const excelData = pasteExcelClipboardString(text)
       if (excelData) {
         const maxRow = rowIndex + excelData.length
@@ -387,7 +387,7 @@ const changeSelectRange = (e: MouseEvent) => {
   position: absolute;
   left: 0;
   top: 0;
-  border: 0 solid $themeColor;
+  border: 0 solid rgb(var(--primary-6));
 
   &.t {
     border-top-width: 1px;
@@ -418,7 +418,7 @@ const changeSelectRange = (e: MouseEvent) => {
     height: 12px;
     right: 0;
     top: 0;
-    background-color: $themeColor;
+    background-color: rgb(var(--primary-6));
   }
   &::before {
     content: '';
@@ -427,7 +427,7 @@ const changeSelectRange = (e: MouseEvent) => {
     height: 4px;
     right: 0;
     bottom: 0;
-    background-color: $themeColor;
+    background-color: rgb(var(--primary-6));
   }
 }
 table {
@@ -444,7 +444,7 @@ table {
     height: 32px;
 
     &.head {
-      background-color: rgba($color: $themeColor, $alpha: .08);
+      background-color: rgb(var(--primary-1));
     }
   }
   .item {

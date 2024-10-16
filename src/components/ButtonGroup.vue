@@ -33,7 +33,7 @@ withDefaults(defineProps<{
           content: '';
           width: 1px;
           height: calc(100% + 2px);
-          background-color: $themeColor;
+          background-color: rgb(var(--primary-6));
           position: absolute;
           top: -1px;
           right: -1px;
@@ -41,14 +41,14 @@ withDefaults(defineProps<{
       }
 
       &:first-child {
-        border-top-left-radius: $borderRadius;
-        border-bottom-left-radius: $borderRadius;
+        border-top-left-radius: $border-radius-small;
+        border-bottom-left-radius: $border-radius-small;
         border-left-width: 1px;
       }
 
       &:last-child {
-        border-top-right-radius: $borderRadius;
-        border-bottom-right-radius: $borderRadius;
+        border-top-right-radius: $border-radius-small;
+        border-bottom-right-radius: $border-radius-small;
         border-right-width: 1px;
       }
     }
@@ -62,7 +62,7 @@ withDefaults(defineProps<{
           content: '';
           width: 1px;
           height: calc(100% + 2px);
-          background-color: $themeColor;
+          background-color: rgb(var(--primary-6));
           position: absolute;
           top: -1px;
           right: -1px;
@@ -70,14 +70,14 @@ withDefaults(defineProps<{
       }
 
       &.first {
-        border-top-left-radius: $borderRadius;
-        border-bottom-left-radius: $borderRadius;
+        border-top-left-radius: $border-radius-small;
+        border-bottom-left-radius: $border-radius-small;
         border-left-width: 1px;
       }
 
       &.last {
-        border-top-right-radius: $borderRadius;
-        border-bottom-right-radius: $borderRadius;
+        border-top-right-radius: $border-radius-small;
+        border-bottom-right-radius: $border-radius-small;
         border-right-width: 1px;
       }
     }

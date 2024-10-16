@@ -7,22 +7,22 @@
         @click.stop="handleClickMenuItem(menu)"
         :class="{'divider': menu.divider, 'disable': menu.disable}"
       >
-        <div 
-          class="menu-item-content" 
+        <div
+          class="menu-item-content"
           :class="{
             'has-children': menu.children,
             'has-handler': menu.handler,
-          }" 
+          }"
           v-if="!menu.divider"
         >
           <span class="text">{{menu.text}}</span>
           <span class="sub-text" v-if="menu.subText && !menu.children">{{menu.subText}}</span>
 
-          <menu-content 
+          <menu-content
             class="sub-menu"
-            :menus="menu.children" 
+            :menus="menu.children"
             v-if="menu.children && menu.children.length"
-            :handleClickMenuItem="handleClickMenuItem" 
+            :handleClickMenuItem="handleClickMenuItem"
           />
         </div>
       </li>
@@ -50,7 +50,7 @@ $subMenuWidth: 120px;
   background: #fff;
   border: 1px solid $borderColor;
   box-shadow: $boxShadow;
-  border-radius: $borderRadius;
+  border-radius: $border-radius-small;
   list-style: none;
   margin: 0;
 }
@@ -74,7 +74,7 @@ $subMenuWidth: 120px;
   }
 
   &:hover:not(.disable) {
-    background-color: rgba($color: $themeColor, $alpha: .2);
+    background-color: rgb(var(--primary-3));
   }
 
   &.divider {

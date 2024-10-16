@@ -1,34 +1,34 @@
 <template>
   <div class="element-toolbar">
-    <Tabs 
-      :tabs="tabs" 
-      v-model:value="activeTab" 
-      :tabsStyle="{ marginBottom: '8px' }" 
+    <Tabs
+      :tabs="tabs"
+      v-model:value="activeTab"
+      :tabsStyle="{ marginBottom: '8px' }"
       :tabStyle="{
         width: '30%',
         margin: '0 10%',
-      }" 
+      }"
     />
 
     <div class="content">
       <div class="style" v-if="activeTab === 'style'">
         <ButtonGroup class="row">
-          <CheckboxButton 
+          <CheckboxButton
             style="flex: 1;"
             :checked="richTextAttrs.bold"
             @click="emitRichTextCommand('bold')"
           ><IconTextBold /></CheckboxButton>
-          <CheckboxButton 
+          <CheckboxButton
             style="flex: 1;"
             :checked="richTextAttrs.em"
             @click="emitRichTextCommand('em')"
           ><IconTextItalic /></CheckboxButton>
-          <CheckboxButton 
+          <CheckboxButton
             style="flex: 1;"
             :checked="richTextAttrs.underline"
             @click="emitRichTextCommand('underline')"
           ><IconTextUnderline /></CheckboxButton>
-          <CheckboxButton 
+          <CheckboxButton
             style="flex: 1;"
             :checked="richTextAttrs.strikethrough"
             @click="emitRichTextCommand('strikethrough')"
@@ -36,21 +36,21 @@
         </ButtonGroup>
 
         <ButtonGroup class="row">
-          <Button 
+          <Button
             style="flex: 1;"
             @click="emitRichTextCommand('fontsize-add')"
           ><IconFontSize />+</Button>
-          <Button 
+          <Button
             style="flex: 1;"
             @click="emitRichTextCommand('fontsize-reduce')"
           ><IconFontSize />-</Button>
         </ButtonGroup>
-        
+
         <Divider :margin="20" />
 
-        <RadioGroup 
-          class="row" 
-          button-style="solid" 
+        <RadioGroup
+          class="row"
+          button-style="solid"
           :value="richTextAttrs.align"
           @update:value="value => emitRichTextCommand('align', value)"
         >
@@ -58,14 +58,14 @@
           <RadioButton value="center" style="flex: 1;"><IconAlignTextCenter /></RadioButton>
           <RadioButton value="right" style="flex: 1;"><IconAlignTextRight /></RadioButton>
         </RadioGroup>
-        
+
         <Divider :margin="20" />
 
         <div class="row-block">
           <div class="label">文字颜色：</div>
           <div class="colors">
-            <div class="color" 
-              v-for="color in colors" 
+            <div class="color"
+              v-for="color in colors"
               :key="color"
               @click="updateFontColor(color)"
             >
@@ -76,8 +76,8 @@
         <div class="row-block">
           <div class="label">填充色：</div>
           <div class="colors">
-            <div class="color" 
-              v-for="color in colors" 
+            <div class="color"
+              v-for="color in colors"
               :key="color"
               @click="updateFill(color)"
             >
@@ -92,7 +92,7 @@
           <Button style="flex: 1;" @click="copyElement()"><IconCopy class="icon" /> 复制</Button>
           <Button style="flex: 1;" @click="deleteElement()"><IconDelete class="icon" /> 删除</Button>
         </ButtonGroup>
-        
+
         <Divider :margin="20" />
 
         <ButtonGroup class="row">
@@ -101,7 +101,7 @@
           <Button style="flex: 1;" @click="orderElement(handleElement!, ElementOrderCommands.UP)"><IconBringToFront class="icon" /> 上移</Button>
           <Button style="flex: 1;" @click="orderElement(handleElement!, ElementOrderCommands.DOWN)"><IconSentToBack class="icon" /> 下移</Button>
         </ButtonGroup>
-        
+
         <Divider :margin="20" />
 
         <ButtonGroup class="row">
@@ -263,7 +263,7 @@ const updateFill = (color: string) => {
 .row-block {
   margin-bottom: 10px;
   background-color: $lightGray;
-  border-radius: $borderRadius;
+  border-radius: $border-radius-small;
   padding: 10px;
 }
 .label {

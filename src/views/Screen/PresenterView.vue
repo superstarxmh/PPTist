@@ -15,9 +15,9 @@
     </div>
 
     <div class="content">
-      <div 
-        class="slide-list-wrap" 
-        :class="{ 'laser-pen': laserPen }" 
+      <div
+        class="slide-list-wrap"
+        :class="{ 'laser-pen': laserPen }"
         ref="slideListWrapRef"
       >
         <ScreenSlideList
@@ -31,29 +31,29 @@
           @touchend="$event => touchEndListener($event)"
           v-contextmenu="contextmenus"
         />
-        <WritingBoardTool 
+        <WritingBoardTool
           :slideWidth="slideWidth"
           :slideHeight="slideHeight"
           :left="-365"
           :top="-155"
-          v-if="writingBoardToolVisible" 
-          @close="writingBoardToolVisible = false" 
+          v-if="writingBoardToolVisible"
+          @close="writingBoardToolVisible = false"
         />
 
-        <CountdownTimer 
-          v-if="timerlVisible" 
-          :left="75" 
-          @close="timerlVisible = false" 
+        <CountdownTimer
+          v-if="timerlVisible"
+          :left="75"
+          @close="timerlVisible = false"
         />
       </div>
       <div class="thumbnails"
         ref="thumbnailsRef"
         @wheel.prevent="$event => handleMousewheelThumbnails($event)"
       >
-        <div 
+        <div
           class="thumbnail"
           :class="{ 'active': index === slideIndex }"
-          v-for="(slide, index) in slides" 
+          v-for="(slide, index) in slides"
           :key="slide.id"
           @click="turnSlideToIndex(index)"
         >
@@ -220,7 +220,7 @@ const contextmenus = (): ContextmenuItem[] => {
     }
 
     &:hover, &.active {
-      color: $themeColor;
+      color: rgb(var(--primary-6));
     }
   }
 
@@ -266,12 +266,12 @@ const contextmenus = (): ContextmenuItem[] => {
   }
 
   &:hover {
-    outline-color: $themeColor;
+    outline-color: rgb(var(--primary-6));
   }
 
   &.active {
     outline-width: 3px;
-    outline-color: $themeColor;
+    outline-color: rgb(var(--primary-6));
   }
 }
 .remark {

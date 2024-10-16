@@ -4,10 +4,10 @@
       <IconArrowCircleLeft class="icon" @click="emit('close')" />
     </div>
     <div class="slide-thumbnails-content">
-      <div 
+      <div
         class="thumbnail"
         :class="{ 'active': index === slideIndex }"
-        v-for="(slide, index) in slides" 
+        v-for="(slide, index) in slides"
         :key="slide.id"
         @click="turnSlide(index)"
       >
@@ -62,7 +62,7 @@ const turnSlide = (index: number) => {
     cursor: pointer;
 
     &:hover {
-      color: $themeColor;
+      color: rgb(var(--primary-6));
     }
   }
 }
@@ -82,12 +82,12 @@ const turnSlide = (index: number) => {
     margin-bottom: 12px;
 
     &:hover {
-      outline-color: $themeColor;
+      outline-color: rgb(var(--primary-6));
     }
 
     &.active {
       outline-width: 3px;
-      outline-color: $themeColor;
+      outline-color: rgb(var(--primary-6));
     }
   }
 }

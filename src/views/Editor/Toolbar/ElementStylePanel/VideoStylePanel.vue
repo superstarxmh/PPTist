@@ -17,9 +17,9 @@
     <div class="row switch-row">
       <div style="width: 40%;">自动播放：</div>
       <div class="switch-wrapper" style="width: 60%;">
-        <Switch 
-          :value="handleVideoElement.autoplay" 
-          @update:value="value => updateVideo({ autoplay: value })" 
+        <Switch
+          :value="handleVideoElement.autoplay"
+          @update:value="value => updateVideo({ autoplay: value })"
         />
       </div>
     </div>
@@ -76,13 +76,13 @@ const setVideoPoster = (files: FileList) => {
   height: 0;
   padding-bottom: 56.25%;
   border: 1px dashed $borderColor;
-  border-radius: $borderRadius;
+  border-radius: $border-radius-small;
   position: relative;
   transition: all $transitionDelay;
 
   &:hover {
-    border-color: $themeColor;
-    color: $themeColor;
+    border-color: rgb(var(--primary-6));
+    color: rgb(var(--primary-6));
   }
 
   .content {

@@ -1,13 +1,13 @@
 <template>
   <textarea
-    class="textarea" 
+    class="textarea"
     :class="{
       'disabled': disabled,
       'resizable': resizable,
     }"
     ref="textareaRef"
     :disabled="disabled"
-    :value="value" 
+    :value="value"
     :rows="rows"
     :placeholder="placeholder"
     :style="{
@@ -62,7 +62,7 @@ defineExpose({
   width: 100%;
   background-color: #fff;
   border: 1px solid #d9d9d9;
-  border-radius: $borderRadius;
+  border-radius: $border-radius-small;
   padding: 10px;
   transition: border-color .25s;
   box-sizing: border-box;
@@ -71,7 +71,7 @@ defineExpose({
   font-family: -apple-system,BlinkMacSystemFont, 'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
 
   &:focus {
-    border-color: $themeColor;
+    border-color: rgb(var(--primary-6));
     background-color: #fff;
   }
 

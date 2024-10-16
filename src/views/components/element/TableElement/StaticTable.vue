@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     class="static-table"
     :style="{ width: totalWidth + 'px' }"
   >
@@ -18,7 +18,7 @@
       </colgroup>
       <tbody>
         <tr v-for="(rowCells, rowIndex) in data" :key="rowIndex" :style="{ height: cellMinHeight + 'px' }">
-          <td 
+          <td
             class="cell"
             :style="{
               borderStyle: outline.style,
@@ -91,9 +91,9 @@ table {
   word-wrap: break-word;
   user-select: none;
 
-  --themeColor: $themeColor;
-  --subThemeColor1: $themeColor;
-  --subThemeColor2: $themeColor;
+  --themeColor: rgb(var(--primary-6));
+  --subThemeColor1: rgb(var(--primary-6));
+  --subThemeColor2: rgb(var(--primary-6));
 
   &.theme {
     background-color: #fff;

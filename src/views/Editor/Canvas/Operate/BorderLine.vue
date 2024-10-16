@@ -20,7 +20,7 @@ withDefaults(defineProps<{
   height: 0;
   left: 0;
   top: 0;
-  border: 0 dashed $themeColor;
+  border: 0 dashed rgb(var(--primary-6));
 
   &.top {
     border-top-width: 1px;

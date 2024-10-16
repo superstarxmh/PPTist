@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     class="moveable-panel"
     ref="moveablePanelRef"
     :style="{
@@ -164,7 +164,7 @@ const startResize = (e: MouseEvent) => {
   background-color: #fff;
   box-shadow: $boxShadow;
   border: 1px solid $borderColor;
-  border-radius: $borderRadius;
+  border-radius: $border-radius-small;
   display: flex;
   flex-direction: column;
   z-index: 999;

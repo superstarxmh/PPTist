@@ -154,7 +154,7 @@ const handleMousedown = (e: MouseEvent | TouchEvent) => {
 
   if (props.range) {
     const _percentage = getPercentage(e)
-    
+
     if (Math.abs(_percentage - start.value) < Math.abs(_percentage - end.value)) {
       handler.value = 'start'
     }
@@ -202,13 +202,13 @@ const handleMousedown = (e: MouseEvent | TouchEvent) => {
 
   .track {
     &:hover {
-      background-color: $themeHoverColor;
+      background-color: rgb(var(--primary-6));
     }
   }
 
   .thumb {
     &:hover, &:active {
-      outline: 4px solid $themeColor;
+      outline: 4px solid rgb(var(--primary-6));
     }
   }
 }
@@ -229,7 +229,7 @@ const handleMousedown = (e: MouseEvent | TouchEvent) => {
   top: 0;
   left: 0;
   height: 100%;
-  background-color: $themeColor;
+  background-color: rgb(var(--primary-6));
   transition: background-color .2s;
 }
 
@@ -240,7 +240,7 @@ const handleMousedown = (e: MouseEvent | TouchEvent) => {
   width: 10px;
   height: 10px;
   background-color: #fff;
-  outline: 2px solid $themeColor;
+  outline: 2px solid rgb(var(--primary-6));
   transform: translate(-50%, -50%);
   border-radius: 50%;
   z-index: 100;
@@ -262,7 +262,7 @@ const handleMousedown = (e: MouseEvent | TouchEvent) => {
     background-color: #262626;
     text-align: center;
     color: #fff;
-    border-radius: $borderRadius;
+    border-radius: $border-radius-small;
     padding: 6px 5px;
     font-size: 12px;
   }

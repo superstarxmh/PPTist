@@ -13,7 +13,7 @@
   height: 10px;
   top: -25px;
   margin-left: -5px;
-  border: 1px solid $themeColor;
+  border: 1px solid rgb(var(--primary-6));
   background-color: #fff;
   border-radius: 1px;
   cursor: grab;

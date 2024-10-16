@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     class="element-create-selection"
     ref="selectionRef"
     @mousedown.stop="$event => createSelection($event)"
@@ -10,15 +10,15 @@
       <!-- 绘制线条专用 -->
       <svg
         v-if="creatingElement?.type === 'line' && lineData"
-        overflow="visible" 
+        overflow="visible"
         :width="lineData.svgWidth"
         :height="lineData.svgHeight"
       >
 				<path
-          :d="lineData.path" 
-          stroke="#d14424" 
-          fill="none" 
-          stroke-width="2" 
+          :d="lineData.path"
+          stroke="#d14424"
+          fill="none"
+          stroke-width="2"
         ></path>
 			</svg>
     </div>
@@ -225,7 +225,7 @@ const position = computed(() => {
   opacity: .8;
 
   &:not(.line) {
-    border: 1px solid $themeColor;
+    border: 1px solid rgb(var(--primary-6));
   }
 }
 </style>

@@ -1,10 +1,10 @@
 <template>
-  <MoveablePanel 
-    class="notes-panel" 
-    :width="300" 
-    :height="560" 
-    :title="`幻灯片${slideIndex + 1}的批注`" 
-    :left="-270" 
+  <MoveablePanel
+    class="notes-panel"
+    :width="300"
+    :height="560"
+    :title="`幻灯片${slideIndex + 1}的批注`"
+    :left="-270"
     :top="90"
     :minWidth="300"
     :minHeight="400"
@@ -58,7 +58,7 @@
         <div class="empty" v-if="!notes.length">本页暂无批注</div>
       </div>
       <div class="send">
-        <TextArea 
+        <TextArea
           ref="textAreaRef"
           v-model:value="content"
           :padding="6"
@@ -133,7 +133,7 @@ const deleteNote = (id: string) => {
 
 const createNoteReply = () => {
   if (!replyContent.value) return
-  
+
   const currentNote = notes.value.find(note => note.id === replyNoteId.value)
   if (!currentNote) return
 
@@ -160,7 +160,7 @@ const createNoteReply = () => {
 const deleteReply = (noteId: string, replyId: string) => {
   const currentNote = notes.value.find(note => note.id === noteId)
   if (!currentNote || !currentNote.replies) return
-  
+
   const newReplies = currentNote.replies.filter(reply => reply.id !== replyId)
   const newNote: Note = {
     ...currentNote,
@@ -278,7 +278,7 @@ const close = () => {
 
       &:hover {
         text-decoration: underline;
-        color: $themeColor;
+        color: rgb(var(--primary-6));
       }
     }
   }
@@ -314,7 +314,7 @@ const close = () => {
   flex-direction: column;
   justify-content: flex-end;
 
-  
+
   .footer {
     margin-top: 10px;
     display: flex;
@@ -323,7 +323,7 @@ const close = () => {
       display: flex;
       justify-content: center;
       align-items: center;
-      
+
       &.icon {
         font-size: 18px;
         color: #666;

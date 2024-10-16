@@ -1,9 +1,9 @@
 <template>
   <div class="symbol-panel">
-    <Tabs 
-      :tabs="tabs" 
-      v-model:value="selectedSymbolKey" 
-      :tabsStyle="{ marginBottom: '8px' }" 
+    <Tabs
+      :tabs="tabs"
+      v-model:value="selectedSymbolKey"
+      :tabsStyle="{ marginBottom: '8px' }"
       spaceBetween
     />
     <div class="pool">
@@ -61,7 +61,7 @@ const selectSymbol = (value: string) => {
     border: 1px solid $borderColor;
 
     &:hover {
-      color: $themeColor;
+      color: rgb(var(--primary-6));
     }
 
     .symbol {

@@ -1,15 +1,15 @@
 <template>
   <div class="shape-element-operate">
-    <BorderLine 
+    <BorderLine
       class="operate-border-line"
-      v-for="line in borderLines" 
-      :key="line.type" 
-      :type="line.type" 
+      v-for="line in borderLines"
+      :key="line.type"
+      :type="line.type"
       :style="line.style"
     />
     <template v-if="handlerVisible">
       <ResizeHandler
-        class="operate-resize-handler" 
+        class="operate-resize-handler"
         v-for="point in resizeHandlers"
         :key="point.direction"
         :type="point.direction"
@@ -18,12 +18,12 @@
         @mousedown.stop="$event => scaleElement($event, elementInfo, point.direction)"
       />
       <RotateHandler
-        class="operate-rotate-handler" 
+        class="operate-rotate-handler"
         :style="{ left: scaleWidth / 2 + 'px' }"
         @mousedown.stop="$event => rotateElement($event, elementInfo)"
       />
-      <div 
-        class="operate-keypoint-handler" 
+      <div
+        class="operate-keypoint-handler"
         v-for="(keypoint, index) in keypoints"
         :key="index"
         :style="keypoint.styles"
@@ -102,7 +102,7 @@ const keypoints = computed(() => {
   left: 0;
   top: 0;
   margin: -5px 0 0 -5px;
-  border: 1px solid $themeColor;
+  border: 1px solid rgb(var(--primary-6));
   background-color: #ffe873;
   border-radius: 1px;
 }

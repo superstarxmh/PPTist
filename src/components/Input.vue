@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     class="input"
     :class="{
       'disabled': disabled,
@@ -14,7 +14,7 @@
       type="text"
       ref="inputRef"
       :disabled="disabled"
-      :value="value" 
+      :value="value"
       :placeholder="placeholder"
       @input="$event => handleInput($event)"
       @focus="$event => handleFocus($event)"
@@ -77,10 +77,10 @@ defineExpose({
 
 <style lang="scss" scoped>
 .input {
-  background-color: #fff;
-  border: 1px solid #d9d9d9;
+  background-color: var(--color-bg-2);
+  border: 1px solid var(--color-border-2);
   padding: 0 5px;
-  border-radius: $borderRadius;
+  border-radius: var(--border-radius-small);
   transition: border-color .25s;
   font-size: 13px;
   display: flex;
@@ -92,28 +92,28 @@ defineExpose({
     border: 0;
     line-height: 30px;
     vertical-align: top;
-    color: $textColor;
+    color: var(--color-text-2);
     padding: 0 5px;
     flex: 1;
     font-size: 13px;
     font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
 
     &::placeholder {
-      color: #bfbfbf;
+      color: var(--color-text-4);
     }
   }
 
   &:not(.disabled):hover, &.focused {
-    border-color: $themeColor;
+    border-color: rgb(var(--primary-6));
   }
 
   &.disabled {
-    background-color: #f5f5f5;
-    border-color: #dcdcdc;
-    color: #b7b7b7;
+    background-color: var(--color-bg-3);
+    border-color: var(--color-border-2);
+    color: var(--color-text-4);
 
     input {
-      color: #b7b7b7;
+      color: var(--color-text-4);
     }
   }
 

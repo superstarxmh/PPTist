@@ -6,7 +6,7 @@
         <div class="line-item" v-for="(line, j) in item.children" :key="j">
           <div class="line-content" @click="selectLine(line)">
             <svg
-              overflow="visible" 
+              overflow="visible"
               width="20"
               height="20"
             >
@@ -32,10 +32,10 @@
               </defs>
               <path
                 class="line-path"
-                :d="line.path" 
-                stroke="currentColor" 
-                fill="none" 
-                stroke-width="2" 
+                :d="line.path"
+                stroke="currentColor"
+                fill="none"
+                stroke-width="2"
                 :stroke-dasharray="line.style === 'solid' ? '0, 0' : '4, 1'"
                 :marker-start="line.points[0] ? `url(#${`preset-line-${i}-${j}`}-${line.points[0]}-start)` : ''"
                 :marker-end="line.points[1] ? `url(#${`preset-line-${i}-${j}`}-${line.points[1]}-end)` : ''"
@@ -102,7 +102,7 @@ const selectLine = (line: LinePoolItem) => {
   color: #999;
 
   &:hover {
-    color: $themeColor;
+    color: rgb(var(--primary-6));
   }
 
   svg:not(:root) {

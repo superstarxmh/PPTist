@@ -46,14 +46,14 @@ withDefaults(defineProps<{
 .spinner {
   width: 36px;
   height: 36px;
-  border: 3px solid $themeColor;
+  border: 3px solid rgb(var(--primary-6));
   border-top-color: transparent;
   border-radius: 50%;
   animation: spinner .8s linear infinite;
 }
 .text {
   margin-top: 20px;
-  color: $themeColor;
+  color: rgb(var(--primary-6));
 }
 @keyframes spinner {
   0% {

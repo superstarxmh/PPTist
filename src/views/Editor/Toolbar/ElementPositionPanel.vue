@@ -11,7 +11,7 @@
     </ButtonGroup>
 
     <Divider />
-    
+
     <div class="title">对齐：</div>
     <ButtonGroup class="row">
       <Button style="flex: 1;" v-tooltip="'左对齐'" @click="alignElementToCanvas(ElementAlignCommands.LEFT)"><IconAlignLeft /></Button>
@@ -70,12 +70,12 @@
           <IconUnlock style="width: 10%;" class="icon-btn" v-tooltip="'宽高比锁定'" @click="updateFixedRatio(true)" v-else />
         </template>
         <div style="width: 10%;" v-else></div>
-        <NumberInput 
+        <NumberInput
           :min="minSize"
           :max="800"
           :step="5"
-          :disabled="isHorizontalText || handleElement!.type === 'table'" 
-          :value="height" 
+          :disabled="isHorizontalText || handleElement!.type === 'table'"
+          :value="height"
           @update:value="value => updateHeight(value)"
           style="width: 45%;"
         >
@@ -90,13 +90,13 @@
       <Divider />
 
       <div class="row">
-        <NumberInput 
+        <NumberInput
           :min="-180"
           :max="180"
           :step="5"
-          :value="rotate" 
-          @update:value="value => updateRotate(value)" 
-          style="width: 45%;" 
+          :value="rotate"
+          @update:value="value => updateRotate(value)"
+          style="width: 45%;"
         >
           <template #prefix>
             旋转：
@@ -297,7 +297,7 @@ const updateRotate45 = (command: '+' | '-') => {
   cursor: pointer;
 
   &.active {
-    color: $themeColor;
+    color: rgb(var(--primary-6));
   }
 }
 .text-btn {
@@ -308,7 +308,7 @@ const updateRotate45 = (command: '+' | '-') => {
 
   &:hover {
     background-color: #efefef;
-    border-radius: $borderRadius;
+    border-radius: $border-radius-small;
   }
 }
 </style>

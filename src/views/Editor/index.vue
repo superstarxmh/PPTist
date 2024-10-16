@@ -7,8 +7,8 @@
         <CanvasTool class="center-top" />
         <Canvas class="center-body" :style="{ height: `calc(100% - ${remarkHeight + 40}px)` }" />
         <Remark
-          class="center-bottom" 
-          v-model:height="remarkHeight" 
+          class="center-bottom"
+          v-model:height="remarkHeight"
           :style="{ height: `${remarkHeight}px` }"
         />
       </div>
@@ -21,7 +21,7 @@
   <NotesPanel v-if="showNotesPanel" />
 
   <Modal
-    :visible="!!dialogForExport" 
+    :visible="!!dialogForExport"
     :width="680"
     @closed="closeExportDialog()"
   >
@@ -63,10 +63,10 @@ usePasteEvent()
   height: 100%;
 }
 .layout-header {
-  height: 40px;
+  height: 56px;
 }
 .layout-content {
-  height: calc(100% - 40px);
+  height: calc(100% - 56px);
   display: flex;
 }
 .layout-content-left {

@@ -56,7 +56,7 @@
           <IconHighLight />
         </TextColorButton>
       </Popover>
-      <Button 
+      <Button
         class="font-size-btn"
         style="width: 20%;"
         v-tooltip="'增大字号'"
@@ -72,25 +72,25 @@
     </ButtonGroup>
 
     <ButtonGroup class="row">
-      <CheckboxButton 
+      <CheckboxButton
         style="flex: 1;"
         :checked="richTextAttrs.bold"
         v-tooltip="'加粗'"
         @click="emitRichTextCommand('bold')"
       ><IconTextBold /></CheckboxButton>
-      <CheckboxButton 
+      <CheckboxButton
         style="flex: 1;"
         :checked="richTextAttrs.em"
         v-tooltip="'斜体'"
         @click="emitRichTextCommand('em')"
       ><IconTextItalic /></CheckboxButton>
-      <CheckboxButton 
+      <CheckboxButton
         style="flex: 1;"
         :checked="richTextAttrs.underline"
         v-tooltip="'下划线'"
         @click="emitRichTextCommand('underline')"
       ><IconTextUnderline /></CheckboxButton>
-      <CheckboxButton 
+      <CheckboxButton
         style="flex: 1;"
         :checked="richTextAttrs.strikethrough"
         v-tooltip="'删除线'"
@@ -160,9 +160,9 @@
     </ButtonGroup>
     <Divider />
 
-    <RadioGroup 
-      class="row" 
-      button-style="solid" 
+    <RadioGroup
+      class="row"
+      button-style="solid"
       :value="richTextAttrs.align"
       @update:value="value => emitRichTextCommand('align', value)"
     >
@@ -184,9 +184,9 @@
         <Popover trigger="click" v-model:value="bulletListPanelVisible">
           <template #content>
             <div class="list-wrap">
-              <ul class="list" 
-                v-for="item in bulletListStyleTypeOption" 
-                :key="item" 
+              <ul class="list"
+                v-for="item in bulletListStyleTypeOption"
+                :key="item"
                 :style="{ listStyleType: item }"
                 @click="emitRichTextCommand('bulletList', item)"
               >
@@ -209,9 +209,9 @@
         <Popover trigger="click" v-model:value="orderedListPanelVisible">
           <template #content>
             <div class="list-wrap">
-              <ul class="list" 
-                v-for="item in orderedListStyleTypeOption" 
-                :key="item" 
+              <ul class="list"
+                v-for="item in orderedListStyleTypeOption"
+                :key="item"
                 :style="{ listStyleType: item }"
                 @click="emitRichTextCommand('orderedList', item)"
               >
@@ -361,10 +361,10 @@ const removeLink = () => {
   }
 
   &:hover {
-    color: $themeColor;
+    color: rgb(var(--primary-6));
 
     span {
-      background-color: $themeColor;
+      background-color: rgb(var(--primary-6));
     }
   }
 }

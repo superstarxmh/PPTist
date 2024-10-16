@@ -1,10 +1,10 @@
 <template>
   <div class="slide-animation-panel">
     <div class="animation-pool">
-      <div 
-        class="animation-item" 
-        :class="{ 'active': currentTurningMode === item.value }" 
-        v-for="item in animations" 
+      <div
+        class="animation-item"
+        :class="{ 'active': currentTurningMode === item.value }"
+        v-for="item in animations"
         :key="item.label"
         @click="updateTurningMode(item.value)"
       >
@@ -76,7 +76,7 @@ const applyAllSlide = () => {
   cursor: pointer;
 
   &.active {
-    border-color: $themeColor;
+    border-color: rgb(var(--primary-6));
     z-index: 1;
   }
 
@@ -101,7 +101,7 @@ const applyAllSlide = () => {
     position: absolute;
     left: 0;
     top: 0;
-    background-color: rgba($color: $themeColor, $alpha: .75);
+    background-color: rgb(var(--primary-4));
     color: #fff;
     display: flex;
     justify-content: center;

@@ -4,13 +4,13 @@
       'card': card,
       'space-around': spaceAround,
       'space-between': spaceBetween,
-    }" 
+    }"
     :style="tabsStyle || {}"
   >
-    <div 
-      class="tab" 
+    <div
+      class="tab"
       :class="{ 'active': tab.key === value }"
-      v-for="tab in tabs" 
+      v-for="tab in tabs"
       :key="tab.key"
       :style="{
         ...(tabStyle || {}),
@@ -75,7 +75,7 @@ const emit = defineEmits<{
       cursor: pointer;
 
       &.active {
-        border-bottom: 2px solid var(--color, $themeColor);
+        border-bottom: 2px solid rgb(var(--primary-7));
       }
     }
   }

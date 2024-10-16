@@ -1,10 +1,10 @@
 <template>
   <div class="gradient-bar">
     <div class="bar" ref="barRef" :style="{ backgroundImage: gradientStyle }" @click="$event => addPoint($event)"></div>
-    <div class="point" 
+    <div class="point"
       :class="{ 'active': activeIndex === index }"
-      v-for="(item, index) in points" 
-      :key="item.pos + '-' + index" 
+      v-for="(item, index) in points"
+      :key="item.pos + '-' + index"
       :style="{
         backgroundColor: item.color,
         left: `calc(${item.pos}% - 5px)`,
@@ -93,7 +93,7 @@ const movePoint = (index: number) => {
     _points.splice(targetIndex, 0, point)
 
     emit('update:value', _points)
-    
+
     document.onmousemove = null
     document.onmouseup = null
   }
@@ -142,8 +142,8 @@ const addPoint = (e: MouseEvent) => {
     cursor: pointer;
 
     &.active {
-      outline: 1px solid $themeColor;
-      box-shadow: 0 0 2px 2px $themeColor;
+      outline: 1px solid rgb(var(--primary-6));
+      box-shadow: 0 0 2px 2px rgb(var(--primary-6));
     }
   }
 }

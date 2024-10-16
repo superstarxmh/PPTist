@@ -1,7 +1,7 @@
 <template>
-  <Transition 
-    name="message-fade" 
-    appear 
+  <Transition
+    name="message-fade"
+    appear
     mode="in-out"
     @beforeLeave="emit('close')"
     @afterLeave="emit('destroy')"
@@ -22,7 +22,7 @@
           <div class="description">{{ message }}</div>
         </div>
         <div class="control" v-if="closable">
-          <span 
+          <span
             class="close-btn"
             @click="close()"
           >
@@ -105,7 +105,7 @@ defineExpose({
   padding: 10px;
   font-size: 13px;
   overflow: hidden;
-  border-radius: $borderRadius;
+  border-radius: $border-radius-small;
   box-shadow: 0 1px 8px rgba(0, 0, 0, .15);
   background: #fff;
   pointer-events: all;
@@ -146,7 +146,7 @@ defineExpose({
     cursor: pointer;
 
     &:hover {
-      color: $themeColor;
+      color: rgb(var(--primary-6));
     }
   }
 }

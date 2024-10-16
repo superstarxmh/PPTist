@@ -1,7 +1,7 @@
 <template>
   <div class="text-style-panel">
     <div class="preset-style">
-      <div 
+      <div
         class="preset-style-item"
         v-for="item in presetStyles"
         :key="item.label"
@@ -255,8 +255,8 @@ const emitBatchRichTextCommand = (action: RichTextAction[]) => {
   transition: all $transitionDelay;
 
   &:hover {
-    border-color: $themeColor;
-    color: $themeColor;
+    border-color: rgb(var(--primary-6));
+    color: rgb(var(--primary-6));
     z-index: 1;
   }
 
