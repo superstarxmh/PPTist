@@ -180,7 +180,6 @@ export const useMainStore = defineStore('main', {
     },
 
     setDialogForExport(type: DialogForExportTypes) {
-      console.log('setDialogForExport', type);
       this.dialogForExport = type
     },
 

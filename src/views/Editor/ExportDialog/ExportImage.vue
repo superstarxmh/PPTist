@@ -22,8 +22,6 @@
         <a-switch v-model="ignoreWebfont" size="small"/>
       </a-form-item>
     </a-form>
-
-    <FullscreenSpin :loading="exporting" tip="正在导出..."/>
   </div>
 </template>
 
@@ -65,12 +63,17 @@ const renderSlides = computed(() => {
 
 const {exportImage, exporting} = useExport()
 
-const expImage = () => {
+const exportAction = () => {
   if (!imageThumbnailsRef.value) return
   exportImage(imageThumbnailsRef.value, format.value, quality.value, ignoreWebfont.value)
 }
 
 const form = reactive({})
+
+// 暴露方法给父组件调用
+defineExpose({
+  exportAction
+})
 </script>
 
 <style lang="scss" scoped>

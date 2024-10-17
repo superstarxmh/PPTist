@@ -1,38 +1,40 @@
 <template>
   <div class="export-wrap">
     <a-form :model="form" layout="vertical">
-      <a-form-item field="type" label="文件类型">
+      <a-form-item field="exportType" label="文件类型：">
         <a-select
-            v-model="form.type"
+            v-model="form.exportType"
             @change="setDialogForExport"
             placeholder="请选择文件类型">
           <a-option v-for="item in tabs" :key="item.key" :value="item.key">{{ item.label }}</a-option>
         </a-select>
       </a-form-item>
-      <a-form-item field="range" label="导出范围">
-        <a-radio-group type="button" v-model="form.range">
-          <a-radio value="all">全部</a-radio>
-          <a-radio value="current">当前页</a-radio>
-          <a-radio value="custom">自定义</a-radio>
-        </a-radio-group>
-      </a-form-item>
-      <a-form-item field="customRange" label="自定义范围" v-if="form.range === 'custom'">
-        <a-slider
-            :default-value="[1,slides.length]"
-            :max="slides.length" :min="1"
-            v-model:value="form.customRange"
-            range show-input/>
-      </a-form-item>
-      <component :is="currentDialogComponent" @close="setDialogForExport('')"></component>
+      <template v-if="form.exportType !== 'json'">
+        <a-form-item field="range" label="导出范围：">
+          <a-radio-group type="button" v-model="form.range">
+            <a-radio value="all">全部</a-radio>
+            <a-radio value="current">当前页</a-radio>
+            <a-radio value="custom">自定义</a-radio>
+          </a-radio-group>
+        </a-form-item>
+        <a-form-item field="customRange" label="自定义范围：" v-if="form.range === 'custom'">
+          <a-slider
+              :default-value="[1,slides.length]"
+              :max="slides.length" :min="1"
+              v-model:value="form.customRange"
+              range show-input/>
+        </a-form-item>
+      </template>
+      <component ref="itemExport" :is="currentDialogComponent" @close="setDialogForExport('')"></component>
     </a-form>
-    <a-button class="export-btn" type="primary">点击导出</a-button>
+    <a-button class="export-btn" type="primary" @click="exportStart">点击导出</a-button>
 
-    <FullscreenSpin :loading="exporting" tip="正在导出..." />
+    <FullscreenSpin :loading="exporting" tip="正在导出..."/>
   </div>
 </template>
 
 <script lang="ts" setup>
-import {computed, reactive} from 'vue'
+import {computed, reactive, ref} from 'vue'
 import {storeToRefs} from 'pinia'
 import {useMainStore, useSlidesStore} from '@/store'
 import type {DialogForExportTypes} from '@/types/export'
@@ -42,12 +44,18 @@ import ExportJSON from './ExportJSON.vue'
 import ExportPDF from './ExportPDF.vue'
 import ExportPPTX from './ExportPPTX.vue'
 import ExportSpecificFile from './ExportSpecificFile.vue'
-import FullscreenSpin from "@/components/FullscreenSpin.vue";
-import useExport from "@/hooks/useExport";
+import FullscreenSpin from '@/components/FullscreenSpin.vue'
+import useExport from '@/hooks/useExport'
 
 interface TabItem {
   key: DialogForExportTypes
   label: string
+}
+
+interface ExportForm {
+  exportType: DialogForExportTypes,
+  range: 'all' | 'current' | 'custom',
+  customRange: [number, number]
 }
 
 const mainStore = useMainStore()
@@ -75,20 +83,29 @@ const currentDialogComponent = computed<unknown>(() => {
   return null
 })
 
-const {slides, currentSlide} = storeToRefs(useSlidesStore())
-const form = reactive({
-  type: 'pptx',
+const {slides} = storeToRefs(useSlidesStore())
+const form: ExportForm = reactive({
+  exportType: 'pptx',
   range: 'all',
   customRange: [1, slides.value.length],
 })
 
+const {exporting} = useExport()
+const itemExport = ref(null)
+const exportStart = () => {
+  // console.log(itemExport)
+  if (itemExport.value) {
+    itemExport.value.exportAction(form)
+  }
 
-const { exportImage, exporting } = useExport()
+}
+
 </script>
 
 <style lang="scss" scoped>
 .export-wrap {
   padding: 16px 20px;
+  max-height: 600px;
 
   .export-btn {
     width: 100%;

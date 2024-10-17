@@ -3,26 +3,14 @@
     <div class="preview">
       <pre>{{slides}}</pre>
     </div>
-
-    <div class="btns">
-      <Button class="btn export" type="primary" @click="exportJSON()">导出 JSON</Button>
-      <Button class="btn close" @click="emit('close')">关闭</Button>
-    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia'
 import { useSlidesStore } from '@/store'
-import useExport from '@/hooks/useExport'
-import Button from '@/components/Button.vue'
-
-const emit = defineEmits<{
-  (event: 'close'): void
-}>()
 
 const { slides } = storeToRefs(useSlidesStore())
-const { exportJSON } = useExport()
 </script>
 
 <style lang="scss" scoped>
@@ -37,9 +25,10 @@ const { exportJSON } = useExport()
 }
 .preview {
   width: 100%;
-  height: calc(100% - 100px);
-  background-color: #f9f9f9;
-  color: #0451a5;
+  margin-bottom: 8px;
+  max-height: 400px;
+  background-color: var(--color-bg-1);
+  color: var(--color-text-1);
   overflow: auto;
 }
 pre {
