@@ -1,82 +1,36 @@
 <template>
   <div class="export-img-dialog">
-    <div class="thumbnails-view">
-      <div class="thumbnails" ref="imageThumbnailsRef">
-        <ThumbnailSlide 
-          class="thumbnail" 
-          v-for="slide in renderSlides" 
-          :key="slide.id" 
-          :slide="slide" 
-          :size="1600" 
+    <a-form :model="form" auto-label-width layout="vertical">
+      <a-form-item field="format" label="导出格式：">
+        <a-radio-group type="button" v-model="form.format">
+          <a-radio value="jpeg" style="width: 50%; text-align: center;">JPEG</a-radio>
+          <a-radio value="png" style="width: 50%; text-align: center;">PNG</a-radio>
+        </a-radio-group>
+      </a-form-item>
+      <a-form-item field="quality" label="图片质量：">
+        <a-slider
+            style="padding: 0 8px;"
+            :min="0"
+            :max="1"
+            :step="0.1"
+            v-model:value="quality"
         />
-      </div>
-    </div>
-    <div class="configs">
-      <div class="row">
-        <div class="title">导出格式：</div>
-        <RadioGroup
-          class="config-item"
-          v-model:value="format"
-        >
-          <RadioButton style="width: 50%;" value="jpeg">JPEG</RadioButton>
-          <RadioButton style="width: 50%;" value="png">PNG</RadioButton>
-        </RadioGroup>
-      </div>
-      <div class="row">
-        <div class="title">导出范围：</div>
-        <RadioGroup
-          class="config-item"
-          v-model:value="rangeType"
-        >
-          <RadioButton style="width: 33.33%;" value="all">全部</RadioButton>
-          <RadioButton style="width: 33.33%;" value="current">当前页</RadioButton>
-          <RadioButton style="width: 33.33%;" value="custom">自定义</RadioButton>
-        </RadioGroup>
-      </div>
-      <div class="row" v-if="rangeType === 'custom'">
-        <div class="title" :data-range="`（${range[0]} ~ ${range[1]}）`">自定义范围：</div>
-        <Slider
-          class="config-item"
-          range
-          :min="1"
-          :max="slides.length"
-          :step="1"
-          v-model:value="range"
-        />
-      </div>
+      </a-form-item>
+      <a-form-item field="ignoreWebfont" label="忽略在线字体："
+                   style="display: flex; align-items: center;"
+                   :label-col-style="{flex: 1, marginBottom: 0}">
+        <a-switch v-model="ignoreWebfont" size="small"/>
+      </a-form-item>
+    </a-form>
 
-      <div class="row">
-        <div class="title">图片质量：</div>
-        <Slider
-          class="config-item"
-          :min="0"
-          :max="1"
-          :step="0.1"
-          v-model:value="quality"
-        />
-      </div>
-
-      <div class="row">
-        <div class="title">忽略在线字体：</div>
-        <div class="config-item">
-          <Switch v-model:value="ignoreWebfont" v-tooltip="'导出时默认忽略在线字体，若您在幻灯片中使用了在线字体，且希望导出后保留相关样式，可选择关闭【忽略在线字体】选项，但要注意这将会增加导出用时。'" />
-        </div>
-      </div>
-    </div>
-
-    <div class="btns">
-      <Button class="btn export" type="primary" @click="expImage()">导出图片</Button>
-      <Button class="btn close" @click="emit('close')">关闭</Button>
-    </div>
-
-    <FullscreenSpin :loading="exporting" tip="正在导出..." />
+    <FullscreenSpin :loading="exporting" tip="正在导出..."/>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
-import { storeToRefs } from 'pinia'
-import { useSlidesStore } from '@/store'
+import {computed, reactive, ref} from 'vue'
+import {storeToRefs} from 'pinia'
+import {useSlidesStore} from '@/store'
 import useExport from '@/hooks/useExport'
 
 import ThumbnailSlide from '@/views/components/ThumbnailSlide/index.vue'
@@ -91,7 +45,7 @@ const emit = defineEmits<{
   (event: 'close'): void
 }>()
 
-const { slides, currentSlide } = storeToRefs(useSlidesStore())
+const {slides, currentSlide} = storeToRefs(useSlidesStore())
 
 const imageThumbnailsRef = ref<HTMLElement>()
 const rangeType = ref<'all' | 'current' | 'custom'>('all')
@@ -109,12 +63,14 @@ const renderSlides = computed(() => {
   })
 })
 
-const { exportImage, exporting } = useExport()
+const {exportImage, exporting} = useExport()
 
 const expImage = () => {
   if (!imageThumbnailsRef.value) return
   exportImage(imageThumbnailsRef.value, format.value, quality.value, ignoreWebfont.value)
 }
+
+const form = reactive({})
 </script>
 
 <style lang="scss" scoped>
@@ -126,7 +82,12 @@ const expImage = () => {
   flex-direction: column;
   position: relative;
   overflow: hidden;
+
+  .arco-form-item {
+    margin-bottom: 8px !important;
+  }
 }
+
 .thumbnails-view {
   @include absolute-0();
 
@@ -136,6 +97,7 @@ const expImage = () => {
     @include absolute-0();
   }
 }
+
 .configs {
   width: 350px;
   height: calc(100% - 100px);
@@ -162,10 +124,12 @@ const expImage = () => {
       left: 0;
     }
   }
+
   .config-item {
     flex: 1;
   }
 }
+
 .btns {
   width: 300px;
   height: 100px;
@@ -177,6 +141,7 @@ const expImage = () => {
   .export {
     flex: 1;
   }
+
   .close {
     width: 100px;
     margin-left: 10px;

@@ -2,30 +2,32 @@
   <div class="export-wrap">
     <a-form :model="form" layout="vertical">
       <a-form-item field="type" label="文件类型">
-        <a-select v-model:value="dialogForExport" placeholder="请选择文件类型">
+        <a-select
+            v-model="form.type"
+            @change="setDialogForExport"
+            placeholder="请选择文件类型">
           <a-option v-for="item in tabs" :key="item.key" :value="item.key">{{ item.label }}</a-option>
         </a-select>
       </a-form-item>
       <a-form-item field="range" label="导出范围">
-        <a-radio-group type="button" v-model="form.range"
-                       @change="setDialogForExport(key as DialogForExportTypes)">
+        <a-radio-group type="button" v-model="form.range">
           <a-radio value="all">全部</a-radio>
           <a-radio value="current">当前页</a-radio>
           <a-radio value="custom">自定义</a-radio>
         </a-radio-group>
       </a-form-item>
       <a-form-item field="customRange" label="自定义范围" v-if="form.range === 'custom'">
-        <a-slider :default-value="[1,slides.length]" :max="slides.length" :min="1" v-model:value="form.customRange"
-                  range show-input/>
+        <a-slider
+            :default-value="[1,slides.length]"
+            :max="slides.length" :min="1"
+            v-model:value="form.customRange"
+            range show-input/>
       </a-form-item>
-      <a-form-item>
-        <a-button class="export-btn" type="primary">点击导出</a-button>
-      </a-form-item>
-    </a-form>
-    <div class="content">
       <component :is="currentDialogComponent" @close="setDialogForExport('')"></component>
-    </div>
+    </a-form>
+    <a-button class="export-btn" type="primary">点击导出</a-button>
 
+    <FullscreenSpin :loading="exporting" tip="正在导出..." />
   </div>
 </template>
 
@@ -40,7 +42,8 @@ import ExportJSON from './ExportJSON.vue'
 import ExportPDF from './ExportPDF.vue'
 import ExportPPTX from './ExportPPTX.vue'
 import ExportSpecificFile from './ExportSpecificFile.vue'
-import Tabs from '@/components/Tabs.vue'
+import FullscreenSpin from "@/components/FullscreenSpin.vue";
+import useExport from "@/hooks/useExport";
 
 interface TabItem {
   key: DialogForExportTypes
@@ -78,6 +81,9 @@ const form = reactive({
   range: 'all',
   customRange: [1, slides.value.length],
 })
+
+
+const { exportImage, exporting } = useExport()
 </script>
 
 <style lang="scss" scoped>
@@ -86,6 +92,10 @@ const form = reactive({
 
   .export-btn {
     width: 100%;
+  }
+
+  .arco-form-item {
+    margin-bottom: 8px !important;
   }
 }
 

@@ -1,6 +1,14 @@
 <template>
-  <div class="export-pptx-dialog">
-    <div class="configs">
+  <div class="export-pptx">
+    <a-form :model="form" auto-label-width>
+      <a-form-item field="ignoreMedia" label="忽略音频/视频：">
+        <a-switch v-model="ignoreMedia" size="small"/>
+      </a-form-item>
+      <a-form-item field="masterOverwrite" label="覆盖默认母版：">
+        <a-switch v-model="masterOverwrite" size="small"/>
+      </a-form-item>
+    </a-form>
+<!--    <div class="configs">
       <div class="row">
         <div class="title">导出范围：</div>
         <RadioGroup
@@ -43,7 +51,7 @@
     <div class="btns">
       <Button class="btn export" type="primary" @click="exportPPTX(selectedSlides, masterOverwrite, ignoreMedia)">导出 PPTX</Button>
       <Button class="btn close" @click="emit('close')">关闭</Button>
-    </div>
+    </div>-->
 
     <FullscreenSpin :loading="exporting" tip="正在导出..." />
   </div>
@@ -83,10 +91,12 @@ const selectedSlides = computed(() => {
     return index >= min - 1 && index <= max - 1
   })
 })
+
+const form = ref({})
 </script>
 
 <style lang="scss" scoped>
-.export-pptx-dialog {
+.export-pptx {
   height: 100%;
   display: flex;
   justify-content: center;
@@ -94,6 +104,10 @@ const selectedSlides = computed(() => {
   flex-direction: column;
   position: relative;
   overflow: hidden;
+
+  .arco-form-item {
+    margin-bottom: 8px!important;
+  }
 }
 .configs {
   width: 350px;

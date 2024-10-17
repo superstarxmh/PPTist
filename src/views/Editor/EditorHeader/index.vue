@@ -111,10 +111,11 @@
       </a-button-group>
 
       <a-dropdown trigger="click" :hide-on-select="false" :popup-max-height="false">
-        <a-button type="primary" style="margin-left: 8px;"
-
+        <a-button
+            type="primary" style="margin-left: 8px;"
+            @click="setDialogForExport('pptx')"
         >
-<!--          @click="setDialogForExport('pptx')"-->
+          <!--@click="setDialogForExport('pptx')"-->
           <i class="iconfont v-icon-svg15"></i> &nbsp;导出
         </a-button>
         <template #content>
@@ -192,6 +193,7 @@ const handleUpdateTitle = () => {
 }
 
 const setDialogForExport = (type: DialogForExportTypes) => {
+  console.log('setDialogForExport', type);
   mainStore.setDialogForExport(type)
   mainMenuVisible.value = false
 }
@@ -219,8 +221,7 @@ const showViews = reactive(['layer', 'com', 'toolbox', 'config'])
 const onClick = (item: typeof options[number]) => {
   if (showViews.value.includes(item.value)) {
     showViews.value = showViews.value.filter(v => v !== item.value)
-  }
-  else {
+  } else {
     showViews.value.push(item.value)
   }
 }

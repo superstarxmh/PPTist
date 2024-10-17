@@ -20,13 +20,13 @@
   <SearchPanel v-if="showSearchPanel" />
   <NotesPanel v-if="showNotesPanel" />
 
-  <Modal
+<!--  <Modal
     :visible="!!dialogForExport"
     :width="680"
     @closed="closeExportDialog()"
   >
     <ExportDialog />
-  </Modal>
+  </Modal>-->
 </template>
 
 <script lang="ts" setup>
