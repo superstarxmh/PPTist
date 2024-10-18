@@ -12,29 +12,17 @@
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
-import {storeToRefs} from 'pinia'
-import {useSlidesStore} from '@/store'
 import useExport from '@/hooks/useExport'
-const { slides, currentSlide } = storeToRefs(useSlidesStore())
+import {ref} from 'vue'
 
 const masterOverwrite = ref(true)
 const ignoreMedia = ref(true)
 
 const form = ref({})
-
-const selectedSlides = (form) => {
-  if (form.range === 'all') return slides.value
-  if (form.range === 'current') return [currentSlide.value]
-  return slides.value.filter((item, index) => {
-    const [min, max] = form.cusomtRange
-    return index >= min - 1 && index <= max - 1
-  })
-}
 const { exportPPTX } = useExport()
 
-const exportAction = (form) => {
-  exportPPTX(selectedSlides(form), masterOverwrite, ignoreMedia)
+const exportAction = (selectedSlides) => {
+  exportPPTX(selectedSlides, masterOverwrite, ignoreMedia)
 }
 
 // 暴露方法给父组件调用

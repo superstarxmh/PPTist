@@ -1,8 +1,19 @@
 <template>
   <div class="export-img-dialog">
+    <div class="thumbnails-view">
+      <div class="thumbnails" ref="imageThumbnailsRef">
+        <ThumbnailSlide
+            class="thumbnail"
+            v-for="slide in selectedSlides"
+            :key="slide.id"
+            :slide="slide"
+            :size="1600"
+        />
+      </div>
+    </div>
     <a-form :model="form" auto-label-width layout="vertical">
       <a-form-item field="format" label="导出格式：">
-        <a-radio-group type="button" v-model="form.format">
+        <a-radio-group type="button" v-model="format">
           <a-radio value="jpeg" style="width: 50%; text-align: center;">JPEG</a-radio>
           <a-radio value="png" style="width: 50%; text-align: center;">PNG</a-radio>
         </a-radio-group>
@@ -26,42 +37,22 @@
 </template>
 
 <script lang="ts" setup>
-import {computed, reactive, ref} from 'vue'
-import {storeToRefs} from 'pinia'
-import {useSlidesStore} from '@/store'
+import {reactive, ref, defineProps} from 'vue'
 import useExport from '@/hooks/useExport'
 
 import ThumbnailSlide from '@/views/components/ThumbnailSlide/index.vue'
-import FullscreenSpin from '@/components/FullscreenSpin.vue'
-import Switch from '@/components/Switch.vue'
-import Slider from '@/components/Slider.vue'
-import Button from '@/components/Button.vue'
-import RadioButton from '@/components/RadioButton.vue'
-import RadioGroup from '@/components/RadioGroup.vue'
-
-const emit = defineEmits<{
-  (event: 'close'): void
-}>()
-
-const {slides, currentSlide} = storeToRefs(useSlidesStore())
 
 const imageThumbnailsRef = ref<HTMLElement>()
-const rangeType = ref<'all' | 'current' | 'custom'>('all')
-const range = ref<[number, number]>([1, slides.value.length])
 const format = ref<'jpeg' | 'png'>('jpeg')
 const quality = ref(1)
 const ignoreWebfont = ref(true)
+const {exportImage} = useExport()
 
-const renderSlides = computed(() => {
-  if (rangeType.value === 'all') return slides.value
-  if (rangeType.value === 'current') return [currentSlide.value]
-  return slides.value.filter((item, index) => {
-    const [min, max] = range.value
-    return index >= min - 1 && index <= max - 1
-  })
-})
-
-const {exportImage, exporting} = useExport()
+// 定义 Props 类型
+interface Props {
+  selectedSlides: [];
+}
+const props = defineProps<Props>()
 
 const exportAction = () => {
   if (!imageThumbnailsRef.value) return
@@ -93,12 +84,7 @@ defineExpose({
 
 .thumbnails-view {
   @include absolute-0();
-
-  &::after {
-    content: '';
-    background-color: #fff;
-    @include absolute-0();
-  }
+  z-index: -1;
 }
 
 .configs {

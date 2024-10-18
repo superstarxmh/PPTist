@@ -25,7 +25,7 @@
               range show-input/>
         </a-form-item>
       </template>
-      <component ref="itemExport" :is="currentDialogComponent" @close="setDialogForExport('')"></component>
+      <component ref="itemExport" :is="currentDialogComponent" @close="setDialogForExport('')" :selectedSlides="selectedSlides"></component>
     </a-form>
     <a-button class="export-btn" type="primary" @click="exportStart">点击导出</a-button>
 
@@ -83,21 +83,28 @@ const currentDialogComponent = computed<unknown>(() => {
   return null
 })
 
-const {slides} = storeToRefs(useSlidesStore())
+const { slides, currentSlide } = storeToRefs(useSlidesStore())
 const form: ExportForm = reactive({
   exportType: 'pptx',
   range: 'all',
   customRange: [1, slides.value.length],
 })
 
+const selectedSlides = computed(() => {
+  if (form.range === 'all') return slides.value
+  if (form.range === 'current') return [currentSlide.value]
+  return slides.value.filter((item, index) => {
+    const [min, max] = form.customRange
+    return index >= min - 1 && index <= max - 1
+  })
+})
+
 const {exporting} = useExport()
 const itemExport = ref(null)
 const exportStart = () => {
-  // console.log(itemExport)
   if (itemExport.value) {
-    itemExport.value.exportAction(form)
+    itemExport.value.exportAction(selectedSlides)
   }
-
 }
 
 </script>
